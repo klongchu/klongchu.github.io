@@ -346,10 +346,19 @@
       document.getElementById('heroImage').src = repo.image || '';
       document.getElementById('githubLink').href = repo.url;
 
+      const rs = repo.readme_summary || {};
       const content = `
-        <p><strong>${repo.thai_description || repo.description || 'Repository นี้กำลังได้รับความสนใจบน GitHub Trending'}</strong></p>
-        <p>${repo.description ? `🇬🇧 ${repo.description}` : ''}</p>
-        <h3>ไฮไลต์</h3>
+        <h3>📖 คืออะไร</h3>
+        <p><strong>${rs.what_is_it || repo.thai_description || repo.description || 'Repository นี้กำลังได้รับความสนใจบน GitHub Trending'}</strong></p>
+        ${rs.purpose ? `<p>${rs.purpose}</p>` : ''}
+
+        <h3>🛠️ ใช้งานแบบไหน</h3>
+        <p>${rs.how_to_use || 'ดูวิธีใช้งานจาก README ในหน้า repo'}</p>
+
+        <h3>🎯 จุดประสงค์</h3>
+        <p>${repo.thai_description || repo.description || ''} — เป็นหนึ่งใน trending repos ที่ได้รับความสนใจสูงสุดในวันนี้ อันดับ #${repo.rank}</p>
+
+        <h3>✨ ไฮไลต์</h3>
         <ul>
           <li><strong>ภาษา:</strong> ${repo.language || 'N/A'}</li>
           <li><strong>Stars:</strong> ${number(repo.stars)} ดาว</li>
@@ -357,7 +366,7 @@
           <li><strong>เพิ่มขึ้นวันนี้:</strong> +${number(repo.stars_today)} stars</li>
           <li><strong>อันดับ:</strong> #${repo.rank} ใน Trending</li>
         </ul>
-        <p>Repository นี้เป็นหนึ่งใน trending repos ที่ได้รับความสนใจสูงสุดในวันนี้ สามารถดูรายละเอียดเพิ่มเติมและโค้ดต้นฉบับได้ที่ <a href="${repo.url}" target="_blank" style="color: var(--blue); font-weight: 700;">GitHub Repository</a></p>
+        <p>ดูโค้ดต้นฉบับและข้อมูลเพิ่มเติมที่ <a href="${repo.url}" target="_blank" style="color: var(--blue); font-weight: 700;">GitHub Repository</a></p>
       `;
       document.getElementById('contentArea').innerHTML = content;
 

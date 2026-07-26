@@ -60,6 +60,124 @@ def thai_summary(name, description):
     return f"โปรเจกต์ภาษา {name.split('/')[0]}: {desc}" if desc else None
 
 
+README_HINTS = {
+    "install": ["install", "installation", "quick start", "getting started", "run without installing", "download"],
+    "purpose": ["what is", "overview", "about", "why", "vision"],
+    "usage": ["usage", "how to use", "quick start", "demo", "features"],
+}
+
+
+def fetch_readme(name):
+    urls = [
+        f"https://raw.githubusercontent.com/{name}/HEAD/README.md",
+        f"https://raw.githubusercontent.com/{name}/HEAD/readme.md",
+    ]
+    for url in urls:
+        try:
+            with urllib.request.urlopen(url, timeout=20) as resp:
+                return resp.read().decode("utf-8", errors="replace")
+        except Exception:
+            pass
+    return None
+
+
+def readme_image_url(name, md):
+    if not md:
+        return None
+    candidates = []
+    candidates += re.findall(r'!\[[^\]]*\]\(([^)\s]+)', md)
+    candidates += re.findall(r'<img[^>]+src=["\']([^"\']+)["\']', md, re.I)
+    if not candidates:
+        return None
+
+    def normalize(src):
+        src = src.strip()
+        if src.startswith('http://') or src.startswith('https://'):
+            return src
+        if src.startswith('./'):
+            src = src[2:]
+        if src.startswith('/'):
+            src = src[1:]
+        return f"https://raw.githubusercontent.com/{name}/HEAD/{src}"
+
+    def score(src):
+        low = src.lower()
+        bad = ['img.shields.io', 'badge', 'logo', 'icon', 'emoji', 'avatar', '.svg']
+        if any(b in low for b in bad):
+            return -10
+        good = ['screenshot', 'banner', 'demo', 'cover', 'preview', 'hero', 'assets/', 'docs/']
+        s = 0
+        for g in good:
+            if g in low:
+                s += 3
+        if any(low.endswith(ext) for ext in ['.png', '.jpg', '.jpeg', '.webp', '.gif']):
+            s += 2
+        if 'user-attachments/assets' in low:
+            s += 4
+        return s
+
+    ranked = sorted((normalize(c) for c in candidates), key=score, reverse=True)
+    best = ranked[0]
+    return best if score(best) > 0 else None
+
+
+def clean_markdown(md):
+    lines = []
+    for line in md.splitlines():
+        s = line.strip()
+        if not s:
+            continue
+        if s.startswith('![') or s.startswith('<img') or s.startswith('<div') or s.startswith('</div'):
+            continue
+        if s.startswith('```'):
+            continue
+        s = re.sub(r'`([^`]+)`', r'\1', s)
+        s = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', s)
+        s = re.sub(r'<[^>]+>', '', s)
+        s = re.sub(r'^#+\s*', '', s)
+        s = re.sub(r'^[-*]\s*', '', s)
+        s = re.sub(r'\s+', ' ', s).strip()
+        if s:
+            lines.append(s)
+    return lines
+
+
+def first_matching_block(lines, keywords, default=6):
+    for i, line in enumerate(lines):
+        low = line.lower()
+        if any(k in low for k in keywords):
+            block = []
+            for j in range(i + 1, min(i + 8, len(lines))):
+                if len(lines[j]) < 2:
+                    break
+                block.append(lines[j])
+                if len(' '.join(block)) > 300:
+                    break
+            if block:
+                return ' '.join(block)
+    return ' '.join(lines[:default])
+
+
+def summarize_readme_th(name, description):
+    md = fetch_readme(name)
+    if not md:
+        return None, None, None
+    lines = clean_markdown(md)
+    if not lines:
+        return None, None, None
+
+    what = first_matching_block(lines, README_HINTS['purpose'])
+    usage = first_matching_block(lines, README_HINTS['usage'])
+    purpose = first_matching_block(lines, README_HINTS['install'])
+
+    summary = {
+        'what_is_it': thai_summary(name, description) or what,
+        'how_to_use': usage,
+        'purpose': what,
+    }
+    return summary, '\\n'.join(lines[:80]), readme_image_url(name, md)
+
+
 class TrendingParser(HTMLParser):
     """Extract repo rows from the trending page markup."""
 
@@ -164,13 +282,18 @@ def main():
     for i, repo in enumerate(repos, 1):
         repo["rank"] = i
     # reorder keys and add image
-    ordered = [{
-        "rank": r["rank"], "name": r["name"], "description": r["description"],
-        "thai_description": thai_summary(r["name"], r["description"]),
-        "language": r["language"], "stars": r["stars"], "forks": r["forks"],
-        "stars_today": r["stars_today"], "url": r["url"],
-        "image": f"https://opengraph.githubassets.com/1/{r['name']}",
-    } for r in repos]
+    ordered = []
+    for r in repos:
+        readme_summary, readme_excerpt, readme_image = summarize_readme_th(r["name"], r["description"])
+        ordered.append({
+            "rank": r["rank"], "name": r["name"], "description": r["description"],
+            "thai_description": thai_summary(r["name"], r["description"]),
+            "language": r["language"], "stars": r["stars"], "forks": r["forks"],
+            "stars_today": r["stars_today"], "url": r["url"],
+            "image": readme_image or f"https://opengraph.githubassets.com/1/{r['name']}",
+            "readme_summary": readme_summary,
+            "readme_excerpt": readme_excerpt,
+        })
 
     out = {
         "date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
