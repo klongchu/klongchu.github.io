@@ -16,23 +16,23 @@ TRENDING_URL = "https://github.com/trending"
 OUTPUT = "trending.json"
 
 THAI_EXPLANATIONS = {
-    "permissionlesstech/bitchat": "แอปแชตแบบ Bluetooth mesh ใช้คุยกันได้แม้ไม่พึ่งอินเทอร์เน็ต แนวคิดคล้าย IRC สำหรับการสื่อสารระยะใกล้",
-    "citrolabs/ego-lite": "เบราว์เซอร์สำหรับ AI agent ใช้ทำ web automation และแชร์สถานะล็อกอินของ browser ให้ agent ใช้งานต่อได้",
-    "block/buzz": "แพลตฟอร์มสื่อสารแนว hive mind หรือระบบรวมความคิดและการประสานงานของหลายคน/หลาย agent",
-    "pingdotgg/t3code": "โปรเจกต์สาย TypeScript จาก t3 ecosystem ใช้เป็นฐานหรือเครื่องมือช่วยพัฒนาแอปสมัยใหม่",
-    "CoreBunch/Instatic": "CMS แบบ visual และ self-hosted แนว open-source แทน Webflow/Framer/WordPress โดยเน้น output เป็น static pages",
-    "yorukot/superfile": "โปรแกรมจัดการไฟล์บน terminal หน้าตาทันสมัย ใช้งานสะดวก สำหรับคนทำงานใน CLI",
-    "nodejs/node": "runtime สำหรับรัน JavaScript ฝั่ง server และเครื่องมือ command line เป็นแกนหลักของ ecosystem Node.js",
-    "OtterMind/Chat2DB": "เครื่องมือจัดการฐานข้อมูลและ SQL client ที่มี AI ช่วยเขียน query สำรวจ schema และทำงานกับหลาย DB",
-    "pbakaus/impeccable": "ชุดแนวคิดหรือ design language สำหรับช่วยให้ระบบ AI ทำงานด้าน design ได้ดีและสม่ำเสมอขึ้น",
-    "shiyu-coder/Kronos": "foundation model สำหรับข้อมูลตลาดการเงิน ใช้วิเคราะห์ลำดับเหตุการณ์และรูปแบบใน financial markets",
-    "alibaba/open-code-review": "เครื่องมือ code review แบบ hybrid ใช้ทั้งกฎเชิง deterministic และ LLM agent เพื่อช่วยตรวจ bug และช่องโหว่",
-    "andrewyng/aisuite": "ไลบรารีรวม interface สำหรับเรียกใช้งานผู้ให้บริการ Generative AI หลายเจ้า ผ่าน API รูปแบบเดียว",
-    "anthropics/claude-cookbooks": "ชุดตัวอย่าง notebook และ recipe สำหรับใช้งาน Claude ในงานจริง เช่น analysis, automation, และ prompting",
-    "Pumpkin-MC/Pumpkin": "ซอฟต์แวร์ server สำหรับ Minecraft ที่เน้นความเร็วและประสิทธิภาพในการโฮสต์เกม",
-    "permissionlesstech/bitchat-android": "เวอร์ชัน Android ของ bitchat ใช้แชตผ่าน Bluetooth mesh โดยไม่ต้องพึ่งเครือข่ายกลาง",
-    "jenkinsci/jenkins": "automation server สำหรับ CI/CD ใช้ build, test, deploy และ orchestrate งานพัฒนาซอฟต์แวร์",
-    "amnezia-vpn/amnezia-client": "ไคลเอนต์ VPN สำหรับเดสก์ท็อปและมือถือ ใช้เชื่อมต่อบริการ Amnezia VPN",
+    "permissionlesstech/bitchat": "แอปแชตแบบ peer-to-peer ที่ใช้ Bluetooth mesh network และ Nostr protocol ทำงานได้แม้ไม่มีอินเทอร์เน็ต ไม่ต้องสมัครบัญชี ไม่มี server กลาง เหมาะกับการสื่อสารแบบกระจายศูนย์หรือสถานการณ์ที่เครือข่ายปกติใช้ไม่ได้",
+    "citrolabs/ego-lite": "เบราว์เซอร์ที่ออกแบบมาให้คนและ AI agents ใช้งานร่วมกันได้โดยตรง ใช้ทำ web automation, แชร์สถานะ login/session, และให้ agent รันงานใน Space แยกโดยไม่รบกวนแท็บหลักของผู้ใช้",
+    "block/buzz": "workspace สำหรับทีมที่มนุษย์และ AI agents ทำงานร่วมกันบน relay ที่คุณดูแลเองได้ ใช้ event log เดียวเก็บทั้งข้อความ workflow review และ git activity เพื่อให้การทำงานร่วมกันตรวจสอบย้อนหลังได้",
+    "pingdotgg/t3code": "web GUI สำหรับ coding agents หลายเจ้า เช่น Codex, Claude, Cursor และ OpenCode ช่วยรวมการใช้งาน AI coding assistant ไว้ในหน้าเดียว เหมาะกับคนที่อยากได้ interface กลางที่เรียบง่ายและใช้งานเร็ว",
+    "CoreBunch/Instatic": "CMS แบบ visual editor ที่ self-hosted ได้ ทำงานรวม editor, content engine, media, forms, auth และ publisher ไว้ใน Bun server เดียว จุดเด่นคือ export ออกมาเป็น semantic HTML และ CSS ที่เบาและอ่านง่าย",
+    "yorukot/superfile": "โปรแกรมจัดการไฟล์สำหรับ terminal ที่เน้นประสบการณ์ใช้งานสมัยใหม่ มีหน้าตาใช้ง่าย รองรับการ preview ไฟล์ การนำทางด้วยคีย์บอร์ด และงานจัดการไฟล์ทั่วไป เหมาะกับคนที่ทำงานใน CLI เป็นหลัก",
+    "nodejs/node": "JavaScript runtime แบบข้ามแพลตฟอร์มสำหรับรันโค้ดฝั่ง server และ command line ใช้ V8 engine เป็นแกนหลัก และเป็นรากฐานสำคัญของ ecosystem Node.js สำหรับ backend, tooling และ automation",
+    "OtterMind/Chat2DB": "เครื่องมือจัดการฐานข้อมูลและ SQL workspace ที่มี AI assistant ช่วยเขียน อธิบาย และปรับปรุง SQL รองรับฐานข้อมูลจำนวนมาก พร้อมความสามารถดู schema, แก้ข้อมูล, import/export และทำงานวิเคราะห์ข้อมูลได้ในตัว",
+    "pbakaus/impeccable": "ชุดแนวคิดและแนวทางออกแบบสำหรับงานที่ให้ AI ช่วยสร้างงานดีไซน์หรือ UI เน้นทำให้ผลลัพธ์มีความสม่ำเสมอ สื่อสารกับโมเดลง่ายขึ้น และวางระบบการออกแบบให้ทีมใช้งานต่อได้จริง",
+    "shiyu-coder/Kronos": "foundation model สำหรับข้อมูลตลาดการเงิน ออกแบบมาเพื่อวิเคราะห์ time series และรูปแบบใน financial markets ช่วยงานคาดการณ์แนวโน้มและทำความเข้าใจพฤติกรรมของข้อมูลการเงิน",
+    "alibaba/open-code-review": "เครื่องมือ code review แบบ hybrid ที่ใช้ทั้ง deterministic rules และ LLM agent ร่วมกัน เพื่อตรวจจับ bug, issue ด้าน thread safety, XSS, SQL injection และปัญหาคุณภาพโค้ดแบบ line-level",
+    "andrewyng/aisuite": "ไลบรารีที่รวม interface สำหรับเรียกใช้งานผู้ให้บริการ Generative AI หลายเจ้าไว้ในรูปแบบเดียว ช่วยลดความยุ่งยากเวลาเปลี่ยน model provider หรือเขียนแอปที่ต้องรองรับหลาย backend",
+    "anthropics/claude-cookbooks": "ชุดตัวอย่าง notebook และ recipe สำหรับใช้งาน Claude ในงานจริง เช่น data analysis, workflow automation, prompting และการประยุกต์ใช้โมเดลกับ use case ต่าง ๆ",
+    "Pumpkin-MC/Pumpkin": "Minecraft server implementation ที่เน้นประสิทธิภาพและความเร็วในการโฮสต์เกม ช่วยลดการใช้ทรัพยากรและเหมาะกับคนที่ต้องการ server ทางเลือกที่ optimize มากขึ้น",
+    "permissionlesstech/bitchat-android": "เวอร์ชัน Android ของ bitchat สำหรับแชตผ่าน Bluetooth mesh แบบไม่พึ่งโครงสร้างเครือข่ายกลาง เหมาะกับการสื่อสารออฟไลน์หรือในพื้นที่ที่อินเทอร์เน็ตไม่เสถียร",
+    "jenkinsci/jenkins": "automation server สำหรับงาน CI/CD ใช้ build, test, deploy และ orchestrate pipeline ต่าง ๆ ในกระบวนการพัฒนาซอฟต์แวร์ รองรับ plugin จำนวนมากและปรับแต่ง workflow ได้สูง",
+    "amnezia-vpn/amnezia-client": "ไคลเอนต์ VPN สำหรับเดสก์ท็อปและมือถือ ใช้เชื่อมต่อบริการ Amnezia VPN เพื่อช่วยให้ผู้ใช้ตั้งค่าและใช้งานการเชื่อมต่อที่เน้นความเป็นส่วนตัวได้สะดวกขึ้น",
 }
 
 FALLBACK_THAI = {
@@ -49,15 +49,176 @@ FALLBACK_THAI = {
 }
 
 
-def thai_summary(name, description):
+def extract_thai_description_from_readme(md):
+    """Extract description from README and translate to detailed Thai."""
+    if not md:
+        return None
+    
+    lines = []
+    in_features = False
+    feature_lines = []
+    
+    for i, line in enumerate(md.splitlines()[:150]):
+        s = line.strip()
+        
+        # Track features section
+        if re.match(r'^#+\s*(features|what|highlights|key features)', s, re.I):
+            in_features = True
+            continue
+        elif in_features and s.startswith('#'):
+            in_features = False
+        
+        if in_features and (s.startswith('-') or s.startswith('*') or s.startswith('•')):
+            clean = re.sub(r'^[-*•]\s*\*\*?', '', s)
+            clean = re.sub(r'\*\*?:?\s*', '', clean)
+            clean = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', clean)
+            clean = re.sub(r'`([^`]+)`', r'\1', clean)
+            if len(clean) > 10:
+                feature_lines.append(clean)
+        
+        if not s or s.startswith('#'):
+            continue
+        if s.startswith('![') or s.startswith('<img') or s.startswith('<div'):
+            continue
+        if s.startswith('```') or s.startswith('---') or s.startswith('|'):
+            continue
+        if s.startswith('[') or s.startswith('[![') or s.startswith('<a'):
+            continue
+        s = re.sub(r'<[^>]+>', '', s)
+        s = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', s)
+        s = re.sub(r'[*_`]', '', s)
+        s = s.strip()
+        # Skip command/code/URL lines
+        if re.search(r'(curl |bash |wget |npm |npx |pip |brew |apt |sudo |powershell|Invoke-|https?://\S+\.(sh|ps1)|winget |cargo |go install)', s, re.I):
+            continue
+        if s.count('/') > 3 or s.startswith('$') or s.startswith('>'):
+            continue
+        if len(s) > 30:
+            lines.append(s)
+            if len(lines) >= 8:
+                break
+    
+    if not lines:
+        return None
+    
+    full = ' '.join(lines)
+    low = full.lower()
+    features = ' '.join(feature_lines[:5])
+    
+    # Detailed pattern matching with features
+    if ('browser for ai' in low or 'browser for agent' in low or ('browser' in low and 'web automation' in low)):
+        base = 'เบราว์เซอร์ที่ออกแบบมาให้ทำงานร่วมกับ AI agents โดยคนกับ agent สามารถใช้ browser ตัวเดียวกันได้พร้อมกัน agent รัน automation ใน Space แยก ไม่รบกวนแท็บของคุณ'
+        if 'login' in low:
+            base += ' และแชร์สถานะ login/session ระหว่างกันได้ ไม่ต้อง setup browser แยก'
+        if features:
+            base += f' ความสามารถ: {features[:200]}'
+        return base
+    
+    elif 'mesh' in low and 'bluetooth' in low and 'chat' in low:
+        base = 'แอพแชทแบบ peer-to-peer ที่ใช้ Bluetooth mesh network และ Nostr protocol ทำงานได้แม้ไม่มีอินเทอร์เน็ต ไม่ต้องสมัครบัญชี ไม่มี server กลาง'
+        if 'nostr' in low:
+            base += ' มี dual transport คือใช้ Bluetooth สำหรับ offline และ Nostr สำหรับ internet-based messaging'
+        if 'encryption' in low:
+            base += ' มี end-to-end encryption ด้วย Noise Protocol'
+        return base
+    
+    elif 'workspace' in low and ('relay' in low or 'nostr' in low or 'humans and ai' in low):
+        base = 'workspace สำหรับทีมที่มนุษย์และ AI agents ทำงานร่วมกัน ใช้ Nostr relay เป็นฐาน ทุกอย่างเป็น signed events ใน log เดียว ไม่ว่าจะเป็นข้อความ reaction workflow git event'
+        if 'self-host' in low:
+            base += ' self-host ได้ รัน relay เองบน infrastructure ของคุณ'
+        if features:
+            base += f' agents สามารถ: {features[:180]}'
+        return base
+    
+    elif 'cms' in low and ('visual' in low or 'self-host' in low):
+        base = 'CMS แบบ visual editor ที่ทำงานบน Bun server เดียว รวมทั้ง editor, content engine, media, auth, forms, plugins และ publisher'
+        if 'static' in low or 'html' in low:
+            base += ' output เป็น plain semantic HTML และ compact CSS ไม่มี framework runtime เหลือค้าง โหลดเร็วเหมือน static file'
+        if 'self-host' in low:
+            base += ' self-hosted ใช้ SQLite หรือ Postgres'
+        return base
+    
+    elif 'database' in low and ('ai' in low or 'sql' in low):
+        base = 'เครื่องมือจัดการฐานข้อมูลและ SQL workspace ที่มี AI assistant ช่วยเขียน SQL จากภาษาธรรมดา อธิบาย query และ optimize'
+        if '30' in full or 'mysql' in low:
+            base += ' รองรับ 30+ databases: MySQL, PostgreSQL, Oracle, SQL Server, ClickHouse, MongoDB, Redis และอื่นๆ'
+        if 'metadata' in low or 'ddl' in low:
+            base += ' มี database management, browse metadata, edit data in place, import/export'
+        return base
+    
+    elif 'terminal' in low and 'file' in low:
+        base = 'โปรแกรมจัดการไฟล์สำหรับ terminal ที่มี UI สวยงามและใช้งานสะดวก'
+        if 'keyboard' in low:
+            base += ' รองรับ keyboard shortcuts, preview ไฟล์, และ operations ทั่วไปแบบ visual'
+        if features:
+            base += f' ฟีเจอร์: {features[:150]}'
+        return base
+    
+    elif ('gui' in low or 'web gui' in low) and 'coding agent' in low:
+        base = 'web GUI สำหรับ coding agents รองรับ Codex, Claude, Cursor, OpenCode ให้ใช้งาน AI coding assistant ผ่าน interface เดียว'
+        if 'minimal' in low:
+            base += ' ออกแบบให้เรียบง่าย เน้นใช้งานจริง'
+        return base
+    
+    elif 'foundation model' in low or ('financial' in low and 'market' in low):
+        base = 'foundation model ที่ออกแบบมาเฉพาะสำหรับข้อมูลตลาดการเงิน ใช้วิเคราะห์ลำดับเหตุการณ์และรูปแบบใน financial markets'
+        if 'time series' in low or 'sequence' in low:
+            base += ' ทำงานกับ time series data และทำนายแนวโน้ม'
+        return base
+    
+    elif 'code review' in low:
+        base = 'เครื่องมือ code review แบบ hybrid ใช้ทั้ง deterministic rules และ LLM agent ร่วมกัน ตรวจหา bugs, ช่องโหว่ความปลอดภัย และ code quality issues'
+        if features:
+            base += f' ฟีเจอร์: {features[:150]}'
+        return base
+    
+    elif 'javascript runtime' in low or ('node' in low and 'runtime' in low):
+        base = 'JavaScript runtime สำหรับฝั่ง server และ command line ใช้ V8 engine เป็นแกนหลักของ Node.js ecosystem ให้รัน JavaScript นอก browser'
+        if 'open-source' in low:
+            base += ' เป็น open-source และใช้ open governance model'
+        return base
+    
+    elif 'minecraft' in low and 'server' in low:
+        base = 'Minecraft server ที่เน้นความเร็วและประสิทธิภาพ เขียนด้วย Rust เพื่อลด resource usage และเพิ่มประสิทธิภาพการ host เกม'
+        return base
+    
+    elif 'vpn' in low and 'client' in low:
+        base = 'VPN client สำหรับ desktop และมือถือ ใช้เชื่อมต่อบริการ VPN'
+        if 'amnezia' in low:
+            base += ' รองรับ Amnezia VPN protocol'
+        return base
+    
+    # Generic but comprehensive fallback
+    sentences = [s for s in lines[:4] if len(s) > 40]
+    if sentences:
+        desc = ' '.join(sentences)[:350]
+        # Clean up English into Thai context
+        desc = re.sub(r'^(A |An |The )', '', desc)
+        return f"โปรเจกต์นี้คือ {desc}"
+    
+    return None
+
+
+def thai_summary(name, description, readme_md=None):
+    # Priority 1: Manual curated
     if name in THAI_EXPLANATIONS:
         return THAI_EXPLANATIONS[name]
+
+    # Priority 2: Extract from README
+    if readme_md:
+        extracted = extract_thai_description_from_readme(readme_md)
+        if extracted:
+            return extracted
+    
+    # Priority 3: Keyword fallback
     desc = (description or "").strip()
     low = desc.lower()
     for key, value in FALLBACK_THAI.items():
         if key in low:
             return value
-    return f"โปรเจกต์ภาษา {name.split('/')[0]}: {desc}" if desc else None
+    
+    # Priority 4: Generic
+    return f"โปรเจกต์จาก {name.split('/')[0]}: {desc}" if desc else None
 
 
 README_HINTS = {
@@ -161,21 +322,21 @@ def first_matching_block(lines, keywords, default=6):
 def summarize_readme_th(name, description):
     md = fetch_readme(name)
     if not md:
-        return None, None, None
+        return None, None, None, None
     lines = clean_markdown(md)
     if not lines:
-        return None, None, None
+        return None, None, None, md
 
     what = first_matching_block(lines, README_HINTS['purpose'])
     usage = first_matching_block(lines, README_HINTS['usage'])
     purpose = first_matching_block(lines, README_HINTS['install'])
 
     summary = {
-        'what_is_it': thai_summary(name, description) or what,
+        'what_is_it': thai_summary(name, description, md) or what,
         'how_to_use': usage,
         'purpose': what,
     }
-    return summary, '\\n'.join(lines[:80]), readme_image_url(name, md)
+    return summary, '\\n'.join(lines[:80]), readme_image_url(name, md), md
 
 
 class TrendingParser(HTMLParser):
@@ -284,10 +445,10 @@ def main():
     # reorder keys and add image
     ordered = []
     for r in repos:
-        readme_summary, readme_excerpt, readme_image = summarize_readme_th(r["name"], r["description"])
+        readme_summary, readme_excerpt, readme_image, readme_md = summarize_readme_th(r["name"], r["description"])
         ordered.append({
             "rank": r["rank"], "name": r["name"], "description": r["description"],
-            "thai_description": thai_summary(r["name"], r["description"]),
+            "thai_description": thai_summary(r["name"], r["description"], readme_md),
             "language": r["language"], "stars": r["stars"], "forks": r["forks"],
             "stars_today": r["stars_today"], "url": r["url"],
             "image": readme_image or f"https://opengraph.githubassets.com/1/{r['name']}",
