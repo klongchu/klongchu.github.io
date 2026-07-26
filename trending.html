@@ -162,9 +162,28 @@
     .repo-cover {
       position: relative;
       padding: 18px;
-      min-height: 180px;
+      min-height: 200px;
+      aspect-ratio: 2 / 1;
       display: flex; flex-direction: column; justify-content: space-between;
       background: linear-gradient(135deg, #dbeafe, #e0e7ff 50%, #fef3c7 100%);
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+    .repo-cover::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.55) 100%);
+      pointer-events: none;
+    }
+    .repo-cover > * { position: relative; z-index: 1; }
+    .repo-cover.has-image .repo-name-cover,
+    .repo-cover.has-image .repo-owner {
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    }
+    .repo-cover.has-image .mini-badge {
+      background: rgba(255,255,255,0.95);
     }
     .repo-topline {
       display: flex; justify-content: space-between; align-items: start; gap: 12px;
@@ -439,9 +458,12 @@
       const hero = repos[0];
       if (!hero) { mount.innerHTML = ''; return; }
       const owner = hero.name.split('/')[0];
+      const heroStyle = hero.image
+        ? `background-image: linear-gradient(180deg, rgba(15,23,42,0.18), rgba(15,23,42,0.48)), url('${hero.image}'); background-size: cover; background-position: center;`
+        : `background:${coverGradient(hero)}`;
       mount.innerHTML = `
         <article class="hero-card">
-          <div class="hero-media" style="background:${coverGradient(hero)}">
+          <div class="hero-media" style="${heroStyle}">
             <div class="latest-badge">🔥 มาแรงวันนี้</div>
             <div class="hero-big">${hero.language || 'Trending'}<br>Repo</div>
           </div>
@@ -499,9 +521,12 @@
       grid.innerHTML = repos.map(repo => {
         const owner = repo.name.split('/')[0];
         const ownerAvatar = `https://github.com/${owner}.png?size=160`;
+        const cover = repo.image || '';
+        const style = cover ? `background-image:url('${cover}');` : `background:${coverGradient(repo)}`;
+        const cls = cover ? 'repo-cover has-image' : 'repo-cover';
         return `
           <article class="repo-card">
-            <div class="repo-cover" style="background:${coverGradient(repo)}">
+            <div class="${cls}" style="${style}">
               <div class="repo-topline">
                 <span class="mini-badge">${iconForLang(repo.language || 'Other')} ${repo.language || 'N/A'}</span>
                 <span class="repo-rank">#${repo.rank}</span>

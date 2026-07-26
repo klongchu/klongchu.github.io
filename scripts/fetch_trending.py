@@ -163,12 +163,13 @@ def main():
 
     for i, repo in enumerate(repos, 1):
         repo["rank"] = i
-    # reorder keys
+    # reorder keys and add image
     ordered = [{
         "rank": r["rank"], "name": r["name"], "description": r["description"],
         "thai_description": thai_summary(r["name"], r["description"]),
         "language": r["language"], "stars": r["stars"], "forks": r["forks"],
         "stars_today": r["stars_today"], "url": r["url"],
+        "image": f"https://opengraph.githubassets.com/1/{r['name']}",
     } for r in repos]
 
     out = {

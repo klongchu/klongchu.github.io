@@ -1,6 +1,6 @@
 {
   "date": "2026-07-26",
-  "updated_at": "2026-07-26T16:20:48.677786+00:00",
+  "updated_at": "2026-07-26T16:39:31.677732+00:00",
   "trending_repos": [
     {
       "rank": 1,
@@ -8,10 +8,11 @@
       "description": "bluetooth mesh chat, IRC vibes",
       "thai_description": "แอปแชตแบบ Bluetooth mesh ใช้คุยกันได้แม้ไม่พึ่งอินเทอร์เน็ต แนวคิดคล้าย IRC สำหรับการสื่อสารระยะใกล้",
       "language": "Swift",
-      "stars": 29693,
-      "forks": 4599,
+      "stars": 29728,
+      "forks": 4604,
       "stars_today": 1198,
-      "url": "https://github.com/permissionlesstech/bitchat"
+      "url": "https://github.com/permissionlesstech/bitchat",
+      "image": "https://opengraph.githubassets.com/1/permissionlesstech/bitchat"
     },
     {
       "rank": 2,
@@ -19,10 +20,11 @@
       "description": "The fastest browser for AI agents to run web automation, built for sharing your logged-in browser state with your AI agents, like Codex or Claude Code, without disturbing you. Zero cost, zero config.",
       "thai_description": "เบราว์เซอร์สำหรับ AI agent ใช้ทำ web automation และแชร์สถานะล็อกอินของ browser ให้ agent ใช้งานต่อได้",
       "language": "JavaScript",
-      "stars": 4203,
-      "forks": 207,
+      "stars": 4217,
+      "forks": 208,
       "stars_today": 898,
-      "url": "https://github.com/citrolabs/ego-lite"
+      "url": "https://github.com/citrolabs/ego-lite",
+      "image": "https://opengraph.githubassets.com/1/citrolabs/ego-lite"
     },
     {
       "rank": 3,
@@ -30,10 +32,11 @@
       "description": "A hive mind communication platform",
       "thai_description": "แพลตฟอร์มสื่อสารแนว hive mind หรือระบบรวมความคิดและการประสานงานของหลายคน/หลาย agent",
       "language": "Rust",
-      "stars": 12820,
-      "forks": 1033,
+      "stars": 12835,
+      "forks": 1036,
       "stars_today": 1705,
-      "url": "https://github.com/block/buzz"
+      "url": "https://github.com/block/buzz",
+      "image": "https://opengraph.githubassets.com/1/block/buzz"
     },
     {
       "rank": 4,
@@ -41,10 +44,11 @@
       "description": null,
       "thai_description": "โปรเจกต์สาย TypeScript จาก t3 ecosystem ใช้เป็นฐานหรือเครื่องมือช่วยพัฒนาแอปสมัยใหม่",
       "language": "TypeScript",
-      "stars": 14969,
+      "stars": 14978,
       "forks": 3296,
       "stars_today": 159,
-      "url": "https://github.com/pingdotgg/t3code"
+      "url": "https://github.com/pingdotgg/t3code",
+      "image": "https://opengraph.githubassets.com/1/pingdotgg/t3code"
     },
     {
       "rank": 5,
@@ -52,10 +56,11 @@
       "description": "The open-source alternative to Webflow, Framer and WordPress. Agentic self-hosted visual CMS outputting clean static pages. Users, roles, plugins, content, database, it's all there.",
       "thai_description": "CMS แบบ visual และ self-hosted แนว open-source แทน Webflow/Framer/WordPress โดยเน้น output เป็น static pages",
       "language": "TypeScript",
-      "stars": 5471,
+      "stars": 5476,
       "forks": 512,
       "stars_today": 892,
-      "url": "https://github.com/CoreBunch/Instatic"
+      "url": "https://github.com/CoreBunch/Instatic",
+      "image": "https://opengraph.githubassets.com/1/CoreBunch/Instatic"
     },
     {
       "rank": 6,
@@ -63,10 +68,11 @@
       "description": "Pretty fancy and modern terminal file manager",
       "thai_description": "โปรแกรมจัดการไฟล์บน terminal หน้าตาทันสมัย ใช้งานสะดวก สำหรับคนทำงานใน CLI",
       "language": "Go",
-      "stars": 20047,
+      "stars": 20049,
       "forks": 632,
       "stars_today": 180,
-      "url": "https://github.com/yorukot/superfile"
+      "url": "https://github.com/yorukot/superfile",
+      "image": "https://opengraph.githubassets.com/1/yorukot/superfile"
     },
     {
       "rank": 7,
@@ -74,10 +80,11 @@
       "description": "Node.js JavaScript runtime ✨🐢🚀✨",
       "thai_description": "runtime สำหรับรัน JavaScript ฝั่ง server และเครื่องมือ command line เป็นแกนหลักของ ecosystem Node.js",
       "language": "JavaScript",
-      "stars": 118415,
+      "stars": 118418,
       "forks": 36165,
       "stars_today": 37,
-      "url": "https://github.com/nodejs/node"
+      "url": "https://github.com/nodejs/node",
+      "image": "https://opengraph.githubassets.com/1/nodejs/node"
     },
     {
       "rank": 8,
@@ -85,10 +92,11 @@
       "description": "🔥🔥🔥 AI-driven database tool and SQL client, The hottest GUI client, supporting MySQL, Oracle, PostgreSQL, DB2, SQL Server, DB2, SQLite, H2, ClickHouse, and more.",
       "thai_description": "เครื่องมือจัดการฐานข้อมูลและ SQL client ที่มี AI ช่วยเขียน query สำรวจ schema และทำงานกับหลาย DB",
       "language": "Java",
-      "stars": 26963,
-      "forks": 2932,
+      "stars": 26969,
+      "forks": 2936,
       "stars_today": 399,
-      "url": "https://github.com/OtterMind/Chat2DB"
+      "url": "https://github.com/OtterMind/Chat2DB",
+      "image": "https://opengraph.githubassets.com/1/OtterMind/Chat2DB"
     },
     {
       "rank": 9,
@@ -96,10 +104,11 @@
       "description": "The design language that makes your AI harness better at design.",
       "thai_description": "ชุดแนวคิดหรือ design language สำหรับช่วยให้ระบบ AI ทำงานด้าน design ได้ดีและสม่ำเสมอขึ้น",
       "language": "JavaScript",
-      "stars": 50413,
-      "forks": 2973,
+      "stars": 50426,
+      "forks": 2974,
       "stars_today": 471,
-      "url": "https://github.com/pbakaus/impeccable"
+      "url": "https://github.com/pbakaus/impeccable",
+      "image": "https://opengraph.githubassets.com/1/pbakaus/impeccable"
     },
     {
       "rank": 10,
@@ -107,10 +116,11 @@
       "description": "Kronos: A Foundation Model for the Language of Financial Markets",
       "thai_description": "foundation model สำหรับข้อมูลตลาดการเงิน ใช้วิเคราะห์ลำดับเหตุการณ์และรูปแบบใน financial markets",
       "language": "Python",
-      "stars": 34049,
+      "stars": 34055,
       "forks": 5742,
       "stars_today": 322,
-      "url": "https://github.com/shiyu-coder/Kronos"
+      "url": "https://github.com/shiyu-coder/Kronos",
+      "image": "https://opengraph.githubassets.com/1/shiyu-coder/Kronos"
     },
     {
       "rank": 11,
@@ -118,10 +128,11 @@
       "description": "Open-source & free — Battle-tested at Alibaba's scale. Hybrid architecture code review tool: deterministic pipelines + LLM Agent, precise line-level comments, built-in fine-tuned ruleset (NPE, thread-safety, XSS, SQL injection), OpenAI & Anthropic compatible.",
       "thai_description": "เครื่องมือ code review แบบ hybrid ใช้ทั้งกฎเชิง deterministic และ LLM agent เพื่อช่วยตรวจ bug และช่องโหว่",
       "language": "Go",
-      "stars": 13581,
+      "stars": 13589,
       "forks": 932,
       "stars_today": 840,
-      "url": "https://github.com/alibaba/open-code-review"
+      "url": "https://github.com/alibaba/open-code-review",
+      "image": "https://opengraph.githubassets.com/1/alibaba/open-code-review"
     },
     {
       "rank": 12,
@@ -129,10 +140,11 @@
       "description": "Simple, unified interface to multiple Generative AI providers",
       "thai_description": "ไลบรารีรวม interface สำหรับเรียกใช้งานผู้ให้บริการ Generative AI หลายเจ้า ผ่าน API รูปแบบเดียว",
       "language": "Python",
-      "stars": 15341,
+      "stars": 15342,
       "forks": 1624,
       "stars_today": 189,
-      "url": "https://github.com/andrewyng/aisuite"
+      "url": "https://github.com/andrewyng/aisuite",
+      "image": "https://opengraph.githubassets.com/1/andrewyng/aisuite"
     },
     {
       "rank": 13,
@@ -140,10 +152,11 @@
       "description": "A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.",
       "thai_description": "ชุดตัวอย่าง notebook และ recipe สำหรับใช้งาน Claude ในงานจริง เช่น analysis, automation, และ prompting",
       "language": "Jupyter Notebook",
-      "stars": 50115,
+      "stars": 50117,
       "forks": 5912,
       "stars_today": 377,
-      "url": "https://github.com/anthropics/claude-cookbooks"
+      "url": "https://github.com/anthropics/claude-cookbooks",
+      "image": "https://opengraph.githubassets.com/1/anthropics/claude-cookbooks"
     },
     {
       "rank": 14,
@@ -151,10 +164,11 @@
       "description": "Empowering everyone to host fast and efficient Minecraft servers.",
       "thai_description": "ซอฟต์แวร์ server สำหรับ Minecraft ที่เน้นความเร็วและประสิทธิภาพในการโฮสต์เกม",
       "language": "Rust",
-      "stars": 9884,
+      "stars": 9886,
       "forks": 668,
       "stars_today": 339,
-      "url": "https://github.com/Pumpkin-MC/Pumpkin"
+      "url": "https://github.com/Pumpkin-MC/Pumpkin",
+      "image": "https://opengraph.githubassets.com/1/Pumpkin-MC/Pumpkin"
     },
     {
       "rank": 15,
@@ -162,10 +176,11 @@
       "description": "bluetooth mesh chat, IRC vibes",
       "thai_description": "เวอร์ชัน Android ของ bitchat ใช้แชตผ่าน Bluetooth mesh โดยไม่ต้องพึ่งเครือข่ายกลาง",
       "language": "Kotlin",
-      "stars": 6507,
-      "forks": 1554,
+      "stars": 6517,
+      "forks": 1557,
       "stars_today": 384,
-      "url": "https://github.com/permissionlesstech/bitchat-android"
+      "url": "https://github.com/permissionlesstech/bitchat-android",
+      "image": "https://opengraph.githubassets.com/1/permissionlesstech/bitchat-android"
     },
     {
       "rank": 16,
@@ -173,10 +188,11 @@
       "description": "Jenkins automation server",
       "thai_description": "automation server สำหรับ CI/CD ใช้ build, test, deploy และ orchestrate งานพัฒนาซอฟต์แวร์",
       "language": "Java",
-      "stars": 25659,
-      "forks": 9653,
+      "stars": 25660,
+      "forks": 9654,
       "stars_today": 8,
-      "url": "https://github.com/jenkinsci/jenkins"
+      "url": "https://github.com/jenkinsci/jenkins",
+      "image": "https://opengraph.githubassets.com/1/jenkinsci/jenkins"
     },
     {
       "rank": 17,
@@ -184,10 +200,11 @@
       "description": "Amnezia VPN Client (Desktop+Mobile)",
       "thai_description": "ไคลเอนต์ VPN สำหรับเดสก์ท็อปและมือถือ ใช้เชื่อมต่อบริการ Amnezia VPN",
       "language": "C++",
-      "stars": 13158,
+      "stars": 13161,
       "forks": 1002,
       "stars_today": 17,
-      "url": "https://github.com/amnezia-vpn/amnezia-client"
+      "url": "https://github.com/amnezia-vpn/amnezia-client",
+      "image": "https://opengraph.githubassets.com/1/amnezia-vpn/amnezia-client"
     }
   ],
   "total_count": 17
