@@ -331,6 +331,15 @@
     }
 
     function number(n) { return (n || 0).toLocaleString(); }
+    function formalize(text) {
+      if (!text) return '';
+      return String(text)
+        .replaceAll('workspace', 'พื้นที่ทำงาน')
+        .replaceAll('server', 'เซิร์ฟเวอร์')
+        .replaceAll('agent', 'ตัวแทน AI')
+        .replaceAll('browser', 'เบราว์เซอร์')
+        .replaceAll('database', 'ฐานข้อมูล');
+    }
 
     function renderDetail(repo) {
       const owner = repo.name.split('/')[0];
@@ -348,17 +357,19 @@
 
       const rs = repo.readme_summary || {};
       const content = `
-        <h3>📖 คืออะไร</h3>
-        <p><strong>${rs.what_is_it || repo.thai_description || repo.description || 'Repository นี้กำลังได้รับความสนใจบน GitHub Trending'}</strong></p>
-        ${rs.purpose ? `<p>${rs.purpose}</p>` : ''}
+        <h3>📖 ลักษณะของโครงการ</h3>
+        <p><strong>${rs.what_is_it_formal_th || rs.what_is_it || repo.thai_description || repo.description || 'Repository นี้กำลังได้รับความสนใจบน GitHub Trending'}</strong></p>
+        ${rs.purpose ? `<p>${formalize(rs.purpose)}</p>` : ''}
 
-        <h3>🛠️ ใช้งานแบบไหน</h3>
-        <p>${rs.how_to_use || 'ดูวิธีใช้งานจาก README ในหน้า repo'}</p>
+        <h3>🛠️ แนวทางการใช้งาน</h3>
+        <p>${rs.how_to_use_formal_th || rs.how_to_use || 'โปรดศึกษาวิธีใช้งานจาก README ของโครงการต้นฉบับ'}</p>
 
-        <h3>🎯 จุดประสงค์</h3>
-        <p>${repo.thai_description || repo.description || ''} — เป็นหนึ่งใน trending repos ที่ได้รับความสนใจสูงสุดในวันนี้ อันดับ #${repo.rank}</p>
+        <h3>🎯 วัตถุประสงค์ของโครงการ</h3>
+        <p>${repo.thai_description || repo.description || ''} โดยโครงการนี้เป็นหนึ่งในรีโพซิทอรีที่ได้รับความนิยมสูงใน GitHub Trending และอยู่ในอันดับที่ ${repo.rank} ของช่วงเวลาปัจจุบัน</p>
 
-        <h3>✨ ไฮไลต์</h3>
+        ${rs.installation_formal_th ? `<h3>📦 การติดตั้งและเริ่มต้นใช้งาน</h3><p>${rs.installation_formal_th}</p>` : ''}
+
+        <h3>✨ ข้อมูลประกอบ</h3>
         <ul>
           <li><strong>ภาษา:</strong> ${repo.language || 'N/A'}</li>
           <li><strong>Stars:</strong> ${number(repo.stars)} ดาว</li>
@@ -377,24 +388,9 @@
         <span class="stat-pill">🏷️ ${repo.language || 'N/A'}</span>
       `;
 
-      // Fake readme (would normally fetch from GitHub API)
-      document.getElementById('readmeContent').innerHTML = `
-# ${repo.name}
-
-${repo.description || ''}
-
-## Features
-- ภาษา: ${repo.language}
-- Stars: ${number(repo.stars)}
-- Forks: ${number(repo.forks)}
-
-## Installation
-\`\`\`bash
-git clone ${repo.url}
-\`\`\`
-
-ดูรายละเอียดเพิ่มเติมได้ที่ ${repo.url}
-      `;
+      document.getElementById('readmeContent').textContent = repo.readme_excerpt
+        ? repo.readme_excerpt.replaceAll('\\n', '\n')
+        : 'ไม่พบ README ของโครงการนี้';
     }
 
     function renderRelated(repos, current) {

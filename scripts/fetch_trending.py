@@ -336,7 +336,82 @@ def summarize_readme_th(name, description):
         'how_to_use': usage,
         'purpose': what,
     }
+    formal_sections = summarize_readme_sections_th(md)
+    if formal_sections:
+        summary.update(formal_sections)
     return summary, '\\n'.join(lines[:80]), readme_image_url(name, md), md
+
+
+FORMAL_REPLACEMENTS = [
+    ('install', 'ติดตั้ง'), ('installation', 'การติดตั้ง'), ('quick start', 'การเริ่มต้นใช้งานอย่างรวดเร็ว'),
+    ('getting started', 'การเริ่มต้นใช้งาน'), ('features', 'คุณสมบัติ'), ('feature', 'คุณสมบัติ'),
+    ('usage', 'การใช้งาน'), ('overview', 'ภาพรวม'), ('database', 'ฐานข้อมูล'), ('server', 'เซิร์ฟเวอร์'),
+    ('browser', 'เบราว์เซอร์'), ('agent', 'ตัวแทน AI'), ('workspace', 'พื้นที่ทำงาน'), ('self-hosted', 'ติดตั้งใช้งานบนระบบของตนเอง'),
+    ('open-source', 'โอเพนซอร์ส'), ('runtime', 'รันไทม์'), ('framework', 'เฟรมเวิร์ก'), ('tool', 'เครื่องมือ'),
+    ('code review', 'การตรวจทานโค้ด'), ('automation', 'ระบบอัตโนมัติ'), ('file manager', 'โปรแกรมจัดการไฟล์'),
+    ('terminal', 'เทอร์มินัล'), ('command line', 'บรรทัดคำสั่ง'), ('sql workspace', 'พื้นที่ทำงาน SQL'),
+]
+
+
+def google_translate_th(text):
+    """Translate English text to Thai using Google Translate free API."""
+    if not text:
+        return None
+    text = ' '.join(str(text).replace('\\n', ' ').split())
+    if len(text) < 10:
+        return None
+    # Truncate to avoid URL length limits
+    if len(text) > 450:
+        text = text[:447] + '...'
+    try:
+        import urllib.parse
+        q = urllib.parse.quote(text)
+        url = f"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=th&dt=t&q={q}"
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            result = ""
+            for sentence in data[0]:
+                if sentence and sentence[0]:
+                    result += sentence[0]
+            return result if result else None
+    except Exception:
+        return None
+
+
+def formal_thai(text):
+    """Translate to formal Thai. Uses Google Translate, falls back to curated."""
+    if not text:
+        return None
+    translated = google_translate_th(text)
+    if translated:
+        return translated
+    # Fallback: basic word replacement
+    out = ' '.join(str(text).replace('\\n', ' ').split())
+    out = re.sub(r'AI agents', 'ตัวแทน AI', out, flags=re.I)
+    out = re.sub(r'AI agent', 'ตัวแทน AI', out, flags=re.I)
+    out = re.sub(r'database', 'ฐานข้อมูล', out, flags=re.I)
+    out = re.sub(r'server', 'เซิร์ฟเวอร์', out, flags=re.I)
+    out = re.sub(r'browser', 'เบราว์เซอร์', out, flags=re.I)
+    return out
+
+
+def summarize_readme_sections_th(md):
+    if not md:
+        return None
+    lines = clean_markdown(md)
+    if not lines:
+        return None
+    what = formal_thai(first_matching_block(lines, README_HINTS['purpose']))
+    usage = formal_thai(first_matching_block(lines, README_HINTS['usage']))
+    install = formal_thai(first_matching_block(lines, README_HINTS['install']))
+    if install:
+        install = re.sub(r'(npx|npm|pip|curl|brew|winget|cargo|git clone)[^\n]{0,220}', 'โปรดดูคำสั่งติดตั้งโดยตรงจาก README ต้นฉบับของโครงการ', install, flags=re.I)
+    return {
+        'what_is_it_formal_th': what,
+        'how_to_use_formal_th': usage,
+        'installation_formal_th': install,
+    }
 
 
 class TrendingParser(HTMLParser):
