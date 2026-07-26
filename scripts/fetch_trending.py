@@ -25,6 +25,7 @@ class TrendingParser(HTMLParser):
         self._in_article = False
         self._in_h2 = False
         self._in_desc = False
+        self._in_lang = False
         self._capture_href = None
         self._cur = None
         self._text_buf = []
@@ -35,7 +36,7 @@ class TrendingParser(HTMLParser):
         if tag == "article" and "Box-row" in cls:
             self._in_article = True
             self._cur = {"name": None, "url": None, "description": None,
-                         "stars": 0, "forks": 0, "stars_today": None}
+                         "language": None, "stars": 0, "forks": 0, "stars_today": None}
         elif self._in_article and tag == "h2":
             self._in_h2 = True
         elif self._in_article and self._in_h2 and tag == "a" and self._cur is not None:
@@ -45,6 +46,9 @@ class TrendingParser(HTMLParser):
         elif self._in_article and tag == "p" and "col-9" in cls:
             self._in_desc = True
             self._text_buf = []
+        elif self._in_article and tag == "span" and d.get("itemprop") == "programmingLanguage":
+            self._in_lang = True
+            self._text_buf = []
 
     def handle_endtag(self, tag):
         if tag == "h2" and self._in_h2:
@@ -53,6 +57,9 @@ class TrendingParser(HTMLParser):
             self._in_desc = False
             desc = " ".join("".join(self._text_buf).split())
             self._cur["description"] = desc or None
+        elif tag == "span" and self._in_lang and self._cur is not None:
+            self._in_lang = False
+            self._cur["language"] = "".join(self._text_buf).strip() or None
         elif tag == "article" and self._in_article:
             self._in_article = False
             if self._cur and self._cur.get("name"):
@@ -65,7 +72,7 @@ class TrendingParser(HTMLParser):
             txt = "".join(data.split())
             if txt and self._cur["name"] is None:
                 self._cur["name"] = txt
-        if self._in_desc:
+        if self._in_desc or self._in_lang:
             self._text_buf.append(data)
 
 
@@ -115,8 +122,8 @@ def main():
     # reorder keys
     ordered = [{
         "rank": r["rank"], "name": r["name"], "description": r["description"],
-        "stars": r["stars"], "forks": r["forks"], "stars_today": r["stars_today"],
-        "url": r["url"],
+        "language": r["language"], "stars": r["stars"], "forks": r["forks"],
+        "stars_today": r["stars_today"], "url": r["url"],
     } for r in repos]
 
     out = {
