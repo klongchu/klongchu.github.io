@@ -84,6 +84,66 @@
       color: var(--text-dim);
       font-size: clamp(0.875rem, 2vw, 1rem);
     }
+    .info-box {
+      background: var(--surface-2);
+      border: 1px solid var(--surface-3);
+      border-radius: var(--radius);
+      padding: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .info-box h3 {
+      font-size: clamp(1.25rem, 3vw, 1.5rem);
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+    }
+    .info-box h4 {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .info-box p {
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+    }
+    .info-box ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-dim);
+    }
+    .info-box li {
+      margin-bottom: 0.4rem;
+    }
+    .info-box code {
+      background: var(--surface-3);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: var(--accent);
+    }
+    .info-box a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .info-box a:hover {
+      text-decoration: underline;
+    }
+    .info-box details {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: var(--surface-3);
+      border-radius: 8px;
+    }
+    .info-box summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text);
+      user-select: none;
+    }
+    .info-box summary:hover {
+      color: var(--accent);
+    }
     .filters {
       display: flex;
       gap: 0.75rem;
@@ -210,6 +270,40 @@
     <div class="header">
       <h2>🔥 GitHub Trending</h2>
       <div class="date" id="update-date">Loading...</div>
+    </div>
+
+    <div class="info-box">
+      <h3>GitHub Trending คืออะไร?</h3>
+      <p>รายการ repositories ที่กำลังได้รับความสนใจสูงสุดบน GitHub ในวันนี้ วัดจากจำนวน stars ที่เพิ่มขึ้นภายใน 24 ชั่วโมง ช่วยให้ developer ติดตามเทคโนโลยีใหม่ๆ โปรเจกต์น่าสนใจ และเทรนด์ของวงการ</p>
+      
+      <h4>ข้อมูลที่แสดง</h4>
+      <ul>
+        <li><strong>⭐ Stars</strong> — จำนวนคนกด star ทั้งหมด (แสดงความนิยมโดยรวม)</li>
+        <li><strong>🍴 Forks</strong> — จำนวนครั้งที่ถูก fork (คัดลอกไปพัฒนาต่อ)</li>
+        <li><strong>+X วันนี้</strong> — stars ที่เพิ่มขึ้นในวันนี้ (บ่งชี้ momentum)</li>
+        <li><strong>ภาษา</strong> — ภาษาโปรแกรมหลักของ repo (TypeScript, Python, Go, etc.)</li>
+        <li><strong>อันดับ</strong> — ลำดับความนิยมในวันนี้</li>
+      </ul>
+
+      <h4>วิธีใช้งาน</h4>
+      <ul>
+        <li>คลิกปุ่มภาษาด้านล่างเพื่อกรองเฉพาะภาษาที่สนใจ (เช่น JavaScript, Rust, Python)</li>
+        <li>คลิกชื่อ repo เพื่อไปดูรายละเอียดเต็มบน GitHub</li>
+        <li>คลิก "ทั้งหมด" เพื่อดู repos ทุกภาษา</li>
+        <li>ข้อมูลอัปเดตอัตโนมัติทุกวันเวลา 07:30 น. (UTC+7) ผ่าน GitHub Actions</li>
+      </ul>
+
+      <details>
+        <summary>เทคนิค: ระบบทำงานอย่างไร?</summary>
+        <p style="margin-top:0.75rem">หน้านี้ใช้:</p>
+        <ul>
+          <li><strong>Python script</strong> scrape ข้อมูลจาก <code>github.com/trending</code> ด้วย stdlib (HTMLParser + urllib)</li>
+          <li><strong>GitHub Actions</strong> รัน script ทุกวันและ commit <code>trending.json</code> กลับเข้า repo</li>
+          <li><strong>Static HTML + JavaScript</strong> fetch JSON และ render ฝั่ง client</li>
+          <li><strong>GitHub Pages</strong> serve ไฟล์แบบ static (ไม่มี backend)</li>
+        </ul>
+        <p>📊 <a href="/diagram.html" target="_blank">ดู Architecture Diagram แบบละเอียด</a> | <a href="https://github.com/klongchu/klongchu.github.io" target="_blank">ดูโค้ด</a></p>
+      </details>
     </div>
     
     <div class="filters" id="filters">
