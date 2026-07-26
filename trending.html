@@ -3,542 +3,567 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GitHub Trending - klongchu</title>
+  <title>GitHub Trending — klongchu</title>
   <style>
     :root {
-      --surface-0: #05070C;
-      --surface-1: #0A0D12;
-      --surface-2: #0F131C;
-      --surface-3: #161D2B;
-      --surface-4: #1E2636;
-      --accent: #38BDF8;
-      --accent-dim: #1E3A8A;
-      --text: #E5E7EB;
-      --text-dim: #9CA3AF;
-      --radius: 12px;
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --surface-2: #f8fafc;
+      --line: #e5e7eb;
+      --text: #111827;
+      --muted: #6b7280;
+      --blue: #2563eb;
+      --blue-2: #dbeafe;
+      --shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+      --radius: 18px;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--surface-0);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Thai", sans-serif;
+      background: var(--bg);
       color: var(--text);
       line-height: 1.6;
     }
-    nav {
-      background: var(--surface-1);
-      padding: clamp(1rem, 3vw, 1.5rem);
-      border-bottom: 1px solid var(--surface-3);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(229,231,235,.9);
     }
-    nav .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
+    .topbar-inner {
+      min-height: 76px;
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      gap: 20px;
       align-items: center;
     }
-    nav h1 {
-      font-size: clamp(1.25rem, 4vw, 1.5rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
+    .brand {
+      display: flex; align-items: center; gap: 12px; font-weight: 800;
     }
-    nav h1 a {
-      color: var(--text);
-      text-decoration: none;
+    .brand-avatar {
+      width: 42px; height: 42px; border-radius: 999px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, #60a5fa, #2563eb);
+      color: white; font-size: 18px; box-shadow: var(--shadow);
     }
-    nav ul {
-      display: flex;
-      gap: clamp(1rem, 3vw, 2rem);
-      list-style: none;
+    .brand-text small { display: block; color: var(--muted); font-weight: 600; font-size: 12px; }
+    .brand-text span { display: block; font-size: 18px; letter-spacing: -.02em; }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+      color: var(--muted); font-size: 14px; font-weight: 600;
     }
-    nav a {
-      color: var(--text-dim);
-      text-decoration: none;
-      font-size: clamp(0.875rem, 2vw, 1rem);
-      transition: color 0.2s;
+    .nav-links a:hover { color: var(--text); }
+
+    .search-wrap {
+      position: relative; width: min(260px, 100%);
     }
-    nav a:hover, nav a.active {
-      color: var(--accent);
+    .search {
+      width: 100%; border: 1px solid var(--line); background: #fff;
+      border-radius: 999px; padding: 12px 16px 12px 40px;
+      color: var(--text); font-size: 14px; outline: none;
     }
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 2rem);
+    .search:focus { border-color: #93c5fd; box-shadow: 0 0 0 4px rgba(37,99,235,.08); }
+    .search-icon {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: #94a3b8; font-size: 14px;
     }
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      gap: 1rem;
+    .ghost-btn {
+      border: 1px solid var(--line); background: #fff; color: var(--muted);
+      padding: 10px 14px; border-radius: 999px; font-size: 14px; font-weight: 700;
     }
-    h2 {
-      font-size: clamp(2rem, 5vw, 2.5rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
+
+    main { padding: 28px 0 56px; }
+    .page-title { margin-bottom: 18px; }
+    .page-title h1 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -.03em; line-height: 1.1; }
+    .page-title p { margin-top: 8px; color: var(--muted); font-size: 15px; }
+
+    .category-row, .year-row, .sort-row, .tag-row {
+      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
     }
-    .date {
-      color: var(--text-dim);
-      font-size: clamp(0.875rem, 2vw, 1rem);
+    .toolbar { display: grid; gap: 14px; margin-bottom: 24px; }
+    .chip {
+      border: 1px solid var(--line); background: #fff; color: var(--text);
+      padding: 10px 14px; border-radius: 999px; font-size: 14px; font-weight: 700;
+      cursor: pointer; transition: .18s ease;
     }
-    .info-box {
-      background: var(--surface-2);
-      border: 1px solid var(--surface-3);
-      border-radius: var(--radius);
-      padding: clamp(1.5rem, 3vw, 2rem);
-      margin-bottom: 2rem;
-      line-height: 1.7;
+    .chip:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+    .chip.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .chip.soft-active { background: var(--text); color: #fff; border-color: var(--text); }
+    .toolbar-label { color: var(--muted); font-size: 14px; font-weight: 700; margin-right: 4px; }
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 24px; overflow: hidden; box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      display: grid; grid-template-columns: 1.1fr .9fr;
     }
-    .info-box h3 {
-      font-size: clamp(1.25rem, 3vw, 1.5rem);
-      margin-bottom: 0.75rem;
-      color: var(--accent);
+    .hero-media {
+      min-height: 280px;
+      background: linear-gradient(135deg, #fef3c7, #fde68a 30%, #bfdbfe 100%);
+      padding: 28px; display: flex; flex-direction: column; justify-content: space-between;
     }
-    .info-box h4 {
-      font-size: clamp(1rem, 2.5vw, 1.15rem);
-      margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: var(--text);
+    .latest-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.85); color: #92400e;
+      border: 1px solid rgba(251,191,36,.35);
+      padding: 8px 12px; border-radius: 999px; font-size: 13px; font-weight: 800;
+      width: fit-content;
     }
-    .info-box p {
-      color: var(--text-dim);
-      margin-bottom: 1rem;
+    .hero-big {
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 900; line-height: .95; color: #1f2937; letter-spacing: -.05em;
+      max-width: 320px;
     }
-    .info-box ul {
-      margin-left: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--text-dim);
+    .hero-panel {
+      padding: 28px; display: grid; align-content: center; gap: 14px;
     }
-    .info-box li {
-      margin-bottom: 0.4rem;
+    .hero-meta { color: var(--muted); font-size: 14px; font-weight: 700; }
+    .hero-title { font-size: clamp(24px, 3vw, 34px); line-height: 1.15; letter-spacing: -.03em; }
+    .hero-desc { color: var(--muted); font-size: 15px; }
+    .hero-stats { display: flex; gap: 14px; flex-wrap: wrap; color: var(--muted); font-size: 14px; font-weight: 700; }
+
+    .tag-cloud {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px;
     }
-    .info-box code {
-      background: var(--surface-3);
-      padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      font-size: 0.9em;
-      color: var(--accent);
+    .tag-pill {
+      background: #fff; border: 1px solid var(--line); border-radius: 999px;
+      padding: 10px 14px; font-size: 14px; font-weight: 700; color: #334155;
+      display: inline-flex; gap: 8px; align-items: center;
     }
-    .info-box a {
-      color: var(--accent);
-      text-decoration: none;
+    .tag-pill .count { color: var(--muted); font-weight: 800; }
+
+    .section-head {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      margin-bottom: 14px;
     }
-    .info-box a:hover {
-      text-decoration: underline;
+    .section-head h2 { font-size: 20px; letter-spacing: -.02em; }
+    .view-toggle { display: flex; gap: 8px; }
+    .toggle-btn {
+      border: 1px solid var(--line); background: #fff; color: var(--muted);
+      padding: 10px 12px; border-radius: 12px; font-size: 14px; cursor: pointer;
     }
-    .info-box details {
-      margin-top: 1.5rem;
-      padding: 1rem;
-      background: var(--surface-3);
-      border-radius: 8px;
+    .toggle-btn.active { background: var(--text); color: #fff; border-color: var(--text); }
+
+    .repo-grid {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;
     }
-    .info-box summary {
-      cursor: pointer;
-      font-weight: 600;
-      color: var(--text);
-      user-select: none;
+    .repo-card {
+      display: flex; flex-direction: column;
+      background: #fff; border: 1px solid var(--line); border-radius: 20px;
+      overflow: hidden; box-shadow: var(--shadow); transition: .18s ease;
+      min-height: 100%;
     }
-    .info-box summary:hover {
-      color: var(--accent);
+    .repo-card:hover { transform: translateY(-3px); }
+    .repo-cover {
+      position: relative;
+      padding: 18px;
+      min-height: 180px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      background: linear-gradient(135deg, #dbeafe, #e0e7ff 50%, #fef3c7 100%);
     }
-    .filters {
-      display: flex;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
+    .repo-topline {
+      display: flex; justify-content: space-between; align-items: start; gap: 12px;
     }
-    .filter-btn {
-      background: var(--surface-2);
-      border: 1px solid var(--surface-3);
-      color: var(--text-dim);
-      padding: 0.5rem 1rem;
-      border-radius: 999px;
-      font-size: clamp(0.875rem, 2vw, 0.95rem);
-      cursor: pointer;
-      transition: all 0.2s;
+    .mini-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.85); color: #1d4ed8;
+      border: 1px solid rgba(59,130,246,.15);
+      padding: 7px 10px; border-radius: 999px; font-size: 12px; font-weight: 800;
     }
-    .filter-btn:hover {
-      border-color: var(--accent-dim);
-      color: var(--text);
+    .repo-rank {
+      background: rgba(17,24,39,.9); color: #fff; border-radius: 999px; padding: 7px 10px;
+      font-size: 12px; font-weight: 800;
     }
-    .filter-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--surface-0);
-      font-weight: 600;
+    .cover-title {
+      display: grid; gap: 10px;
     }
-    .repo {
-      background: var(--surface-2);
-      border: 1px solid var(--surface-3);
-      border-radius: var(--radius);
-      padding: clamp(1.25rem, 3vw, 1.75rem);
-      margin-bottom: clamp(1rem, 2vw, 1.5rem);
-      transition: transform 0.2s, border-color 0.2s;
+    .owner-row { display: flex; align-items: center; gap: 10px; }
+    .owner-avatar {
+      width: 42px; height: 42px; border-radius: 12px; object-fit: cover; border: 2px solid rgba(255,255,255,.8);
+      background: rgba(255,255,255,.8);
     }
-    .repo:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent-dim);
+    .repo-name-cover {
+      font-size: 20px; font-weight: 900; line-height: 1.12; letter-spacing: -.03em; color: #0f172a;
+      word-break: break-word;
     }
-    .repo-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 0.75rem;
-      gap: 1rem;
-    }
-    .repo h3 {
-      font-size: clamp(1.1rem, 2.5vw, 1.25rem);
-      color: var(--accent);
-      margin: 0;
-    }
-    .repo h3 a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    .repo h3 a:hover {
-      text-decoration: underline;
-    }
-    .rank {
-      background: var(--surface-3);
-      color: var(--text-dim);
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      font-size: clamp(0.875rem, 2vw, 0.95rem);
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .desc {
-      color: var(--text-dim);
-      font-size: clamp(0.9rem, 2vw, 1rem);
-      line-height: 1.6;
-      margin-bottom: 0.75rem;
-    }
+    .repo-owner { color: #475569; font-size: 13px; font-weight: 700; }
+
+    .repo-body { padding: 18px; display: grid; gap: 12px; }
     .thai-desc {
-      color: var(--text);
-      font-size: clamp(0.95rem, 2vw, 1.02rem);
-      line-height: 1.7;
-      margin-bottom: 0.75rem;
+      font-size: 15px; line-height: 1.65; color: #111827; font-weight: 500;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
     }
     .english-desc {
-      color: var(--text-dim);
-      font-size: clamp(0.82rem, 1.8vw, 0.92rem);
-      line-height: 1.55;
-      margin-bottom: 0.75rem;
+      font-size: 13px; line-height: 1.55; color: var(--muted);
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
-    .label-inline {
-      color: var(--accent);
-      font-weight: 600;
-      margin-right: 0.35rem;
+    .meta-row {
+      display: flex; gap: 8px; flex-wrap: wrap;
     }
-    .category-filter {
-      display: flex;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--surface-3);
+    .meta-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 800; color: #475569;
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 999px; padding: 7px 10px;
     }
-    .category-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-dim);
-      padding: 0.5rem 0;
-      font-size: clamp(0.95rem, 2vw, 1.05rem);
-      cursor: pointer;
-      transition: color 0.2s;
-      font-weight: 500;
-      position: relative;
+    .repo-footer {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      padding-top: 4px; color: var(--muted); font-size: 13px; font-weight: 700;
     }
-    .category-btn:hover {
-      color: var(--text);
+    .repo-stats { display: flex; gap: 10px; flex-wrap: wrap; }
+    .cta-link { color: var(--blue); font-weight: 800; }
+
+    .empty {
+      background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 30px; text-align: center; color: var(--muted);
     }
-    .category-btn.active {
-      color: var(--accent);
-      font-weight: 600;
+
+    .newsletter {
+      margin-top: 40px; background: #fff; border: 1px solid var(--line); border-radius: 24px;
+      padding: 24px; box-shadow: var(--shadow);
+      display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap;
     }
-    .category-btn.active::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--accent);
+    .newsletter h3 { font-size: 22px; letter-spacing: -.02em; }
+    .newsletter p { color: var(--muted); font-size: 14px; margin-top: 6px; }
+    .newsletter-form { display: flex; gap: 10px; flex-wrap: wrap; }
+    .newsletter input {
+      min-width: 240px; border: 1px solid var(--line); border-radius: 999px; padding: 12px 16px; font-size: 14px;
     }
-    .filter-section {
-      margin-bottom: 2rem;
+    .primary-btn {
+      background: var(--blue); color: #fff; border: none; border-radius: 999px;
+      padding: 12px 18px; font-size: 14px; font-weight: 800; cursor: pointer;
     }
-    .filter-label {
-      color: var(--text-dim);
-      font-size: clamp(0.85rem, 1.8vw, 0.92rem);
-      margin-bottom: 0.75rem;
-      font-weight: 500;
-    }
-    .stats {
-      display: flex;
-      gap: clamp(1rem, 3vw, 1.5rem);
-      font-size: clamp(0.875rem, 2vw, 0.95rem);
-      color: var(--text-dim);
-      flex-wrap: wrap;
-    }
-    .stats span {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-    .today {
-      color: var(--accent);
-      font-weight: 600;
-    }
-    .lang {
-      display: inline-block;
-      background: var(--surface-3);
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-    }
-    .repo-grid {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 1rem;
-      align-items: start;
-    }
-    .repo-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 12px;
-      background: var(--surface-3);
-      border: 1px solid var(--surface-4);
-      object-fit: cover;
-    }
-    .repo-content {
-      min-width: 0;
-    }
+
     footer {
-      border-top: 1px solid var(--surface-3);
-      background: var(--surface-1);
-      padding: clamp(2rem, 4vw, 3rem);
-      margin-top: clamp(4rem, 8vw, 6rem);
+      padding: 24px 0 40px; color: var(--muted); font-size: 14px;
     }
-    footer .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
-      color: var(--text-dim);
-      font-size: clamp(0.875rem, 2vw, 1rem);
+
+    @media (max-width: 1080px) {
+      .hero-card { grid-template-columns: 1fr; }
+      .repo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .topbar-inner { grid-template-columns: 1fr; padding: 14px 0; }
+      .search-wrap { width: 100%; }
+    }
+    @media (max-width: 720px) {
+      .repo-grid { grid-template-columns: 1fr; }
+      .hero-media { min-height: 220px; }
+      .hero-big { max-width: none; }
+      .newsletter { align-items: start; }
+      .newsletter-form { width: 100%; }
+      .newsletter input { min-width: 100%; width: 100%; }
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="container">
-      <h1><a href="/">klongchu</a></h1>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/blog.html">Blog</a></li>
-        <li><a href="/trending.html" class="active">Trending</a></li>
-      </ul>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/">
+        <div class="brand-avatar">K</div>
+        <div class="brand-text">
+          <small>GitHub Trends Daily</small>
+          <span>klongchu</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="/">หน้าแรก</a>
+        <a href="/blog.html">บล็อก</a>
+        <a href="/trending.html">Trending</a>
+        <a href="/diagram.html">Architecture</a>
+      </nav>
+
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input id="searchInput" class="search" type="search" placeholder="ค้นหา repo, owner, คำอธิบาย...">
+      </div>
+
+      <a class="ghost-btn" href="https://github.com/klongchu/klongchu.github.io" target="_blank">ดูโค้ด</a>
     </div>
-  </nav>
+  </header>
 
   <main>
-    <div class="header">
-      <h2>🔥 GitHub Trending</h2>
-      <div class="date" id="update-date">Loading...</div>
+    <div class="container">
+      <section class="page-title">
+        <h1>GitHub Trending</h1>
+        <p>รวม repo ที่กำลังมาแรง พร้อมคำอธิบายภาษาไทย หมวดหมู่ และตัวกรองแบบอ่านง่าย</p>
+      </section>
+
+      <section class="toolbar">
+        <div class="category-row" id="categoryRow">
+          <button class="chip active" data-category="all">ทั้งหมด</button>
+          <button class="chip" data-category="ai-ml">🤖 AI & ML</button>
+          <button class="chip" data-category="web-mobile">📱 Web & Mobile</button>
+          <button class="chip" data-category="devtools">🛠️ Dev Tools</button>
+          <button class="chip" data-category="infra">⚙️ Infrastructure</button>
+          <button class="chip" data-category="other">🌐 อื่นๆ</button>
+        </div>
+
+        <div class="year-row" id="languageRow">
+          <button class="chip active" data-lang="all">ทุกภาษา</button>
+        </div>
+
+        <div class="sort-row" id="sortRow">
+          <span class="toolbar-label">เรียงตาม:</span>
+          <button class="chip soft-active" data-sort="today">มาแรงวันนี้</button>
+          <button class="chip" data-sort="stars">Stars ทั้งหมด</button>
+          <button class="chip" data-sort="forks">Forks</button>
+          <button class="chip" data-sort="rank">อันดับ</button>
+        </div>
+      </section>
+
+      <section id="heroMount"></section>
+      <section class="tag-cloud" id="tagCloud"></section>
+
+      <section>
+        <div class="section-head">
+          <h2>โพสต์ก่อนหน้า / Repos ทั้งหมด</h2>
+          <div class="view-toggle">
+            <button class="toggle-btn active" type="button">▥</button>
+            <button class="toggle-btn" type="button">☰</button>
+          </div>
+        </div>
+        <div class="repo-grid" id="repoGrid"></div>
+      </section>
+
+      <section class="newsletter">
+        <div>
+          <h3>รับสรุปเทรนด์ GitHub ส่งตรงถึงอีเมล</h3>
+          <p>หน้านี้อัปเดตอัตโนมัติทุกวันผ่าน GitHub Actions และ GitHub Pages</p>
+        </div>
+        <form class="newsletter-form" onsubmit="event.preventDefault()">
+          <input type="email" placeholder="อีเมลของคุณ">
+          <button class="primary-btn" type="submit">รับข่าวสาร</button>
+        </form>
+      </section>
     </div>
-
-    <div class="info-box">
-      <h3>GitHub Trending คืออะไร?</h3>
-      <p>รายการ repositories ที่กำลังได้รับความสนใจสูงสุดบน GitHub ในวันนี้ วัดจากจำนวน stars ที่เพิ่มขึ้นภายใน 24 ชั่วโมง ช่วยให้ developer ติดตามเทคโนโลยีใหม่ๆ โปรเจกต์น่าสนใจ และเทรนด์ของวงการ</p>
-      
-      <h4>ข้อมูลที่แสดง</h4>
-      <ul>
-        <li><strong>⭐ Stars</strong> — จำนวนคนกด star ทั้งหมด (แสดงความนิยมโดยรวม)</li>
-        <li><strong>🍴 Forks</strong> — จำนวนครั้งที่ถูก fork (คัดลอกไปพัฒนาต่อ)</li>
-        <li><strong>+X วันนี้</strong> — stars ที่เพิ่มขึ้นในวันนี้ (บ่งชี้ momentum)</li>
-        <li><strong>ภาษา</strong> — ภาษาโปรแกรมหลักของ repo (TypeScript, Python, Go, etc.)</li>
-        <li><strong>อันดับ</strong> — ลำดับความนิยมในวันนี้</li>
-      </ul>
-
-      <h4>วิธีใช้งาน</h4>
-      <ul>
-        <li>คลิกปุ่มภาษาด้านล่างเพื่อกรองเฉพาะภาษาที่สนใจ (เช่น JavaScript, Rust, Python)</li>
-        <li>คลิกชื่อ repo เพื่อไปดูรายละเอียดเต็มบน GitHub</li>
-        <li>คลิก "ทั้งหมด" เพื่อดู repos ทุกภาษา</li>
-        <li>ข้อมูลอัปเดตอัตโนมัติทุกวันเวลา 07:30 น. (UTC+7) ผ่าน GitHub Actions</li>
-      </ul>
-
-      <details>
-        <summary>เทคนิค: ระบบทำงานอย่างไร?</summary>
-        <p style="margin-top:0.75rem">หน้านี้ใช้:</p>
-        <ul>
-          <li><strong>Python script</strong> scrape ข้อมูลจาก <code>github.com/trending</code> ด้วย stdlib (HTMLParser + urllib)</li>
-          <li><strong>GitHub Actions</strong> รัน script ทุกวันและ commit <code>trending.json</code> กลับเข้า repo</li>
-          <li><strong>Static HTML + JavaScript</strong> fetch JSON และ render ฝั่ง client</li>
-          <li><strong>GitHub Pages</strong> serve ไฟล์แบบ static (ไม่มี backend)</li>
-        </ul>
-        <p>📊 <a href="/diagram.html" target="_blank">ดู Architecture Diagram แบบละเอียด</a> | <a href="https://github.com/klongchu/klongchu.github.io" target="_blank">ดูโค้ด</a></p>
-      </details>
-    </div>
-
-    <div class="filter-section">
-      <div class="category-filter" id="categories">
-        <button class="category-btn active" data-category="all">ทั้งหมด</button>
-        <button class="category-btn" data-category="ai-ml">🤖 AI & ML</button>
-        <button class="category-btn" data-category="web-mobile">📱 Web & Mobile</button>
-        <button class="category-btn" data-category="devtools">🛠️ Dev Tools</button>
-        <button class="category-btn" data-category="infra">⚙️ Infrastructure</button>
-        <button class="category-btn" data-category="other">🌐 อื่นๆ</button>
-      </div>
-      
-      <div class="filter-label">กรองตามภาษา:</div>
-      <div class="filters" id="filters">
-        <button class="filter-btn active" data-lang="all">ทั้งหมด</button>
-      </div>
-    </div>
-    
-    <div id="repos"></div>
   </main>
 
   <footer>
-    <div class="container">
-      <p>© 2026 klongchu • อัปเดตทุกวันโดย GitHub Actions</p>
-    </div>
+    <div class="container">© 2026 klongchu • Built with GitHub Pages • อัปเดต: <span id="updateDate">Loading...</span></div>
   </footer>
 
   <script>
     let allRepos = [];
-    let currentLang = 'all';
     let currentCategory = 'all';
+    let currentLang = 'all';
+    let currentSort = 'today';
+    let currentQuery = '';
 
-    // Categorize a repo based on name, description, language
     function categorize(repo) {
       const text = `${repo.name} ${repo.description || ''} ${repo.thai_description || ''}`.toLowerCase();
       const lang = repo.language || '';
-
-      if (/\b(ai|ml|llm|gpt|claude|model|neural|agent|generative|foundation|cookbook|prompt)\b/.test(text)) {
-        return 'ai-ml';
-      }
-      if (/\b(browser|web|mobile|android|ios|react|vue|frontend|cms|website|app|flutter|swift)\b/.test(text) ||
-          ['Swift', 'Kotlin', 'Dart', 'JavaScript', 'TypeScript'].includes(lang)) {
-        return 'web-mobile';
-      }
-      if (/\b(cli|terminal|editor|ide|tool|review|debug|lint|file manager|sdk|framework|library)\b/.test(text)) {
-        return 'devtools';
-      }
-      if (/\b(server|vpn|database|db|sql|infra|devops|ci\/cd|jenkins|kubernetes|docker|network|proxy|deploy)\b/.test(text)) {
-        return 'infra';
-      }
+      if (/\b(ai|ml|llm|gpt|claude|model|neural|agent|generative|foundation|cookbook|prompt)\b/.test(text)) return 'ai-ml';
+      if (/\b(browser|web|mobile|android|ios|react|vue|frontend|cms|website|app|flutter|swift)\b/.test(text) || ['Swift','Kotlin','Dart','JavaScript','TypeScript'].includes(lang)) return 'web-mobile';
+      if (/\b(cli|terminal|editor|ide|tool|review|debug|lint|file manager|sdk|framework|library)\b/.test(text)) return 'devtools';
+      if (/\b(server|vpn|database|db|sql|infra|devops|ci\/cd|jenkins|kubernetes|docker|network|proxy|deploy)\b/.test(text)) return 'infra';
       return 'other';
+    }
+
+    function coverGradient(repo) {
+      const map = {
+        'ai-ml': 'linear-gradient(135deg, #ede9fe, #ddd6fe 45%, #bfdbfe)',
+        'web-mobile': 'linear-gradient(135deg, #dbeafe, #bfdbfe 45%, #fef3c7)',
+        'devtools': 'linear-gradient(135deg, #dcfce7, #bbf7d0 45%, #bfdbfe)',
+        'infra': 'linear-gradient(135deg, #fee2e2, #fecaca 45%, #fde68a)',
+        'other': 'linear-gradient(135deg, #f3f4f6, #e5e7eb 45%, #dbeafe)'
+      };
+      return map[repo._category] || map.other;
+    }
+
+    function number(n) { return (n || 0).toLocaleString(); }
+
+    function buildLanguageFilters() {
+      const row = document.getElementById('languageRow');
+      const langs = [...new Set(allRepos.map(r => r.language).filter(Boolean))].sort();
+      langs.forEach(lang => {
+        const btn = document.createElement('button');
+        btn.className = 'chip';
+        btn.dataset.lang = lang;
+        btn.textContent = lang;
+        btn.onclick = () => {
+          currentLang = lang;
+          document.querySelectorAll('[data-lang]').forEach(el => el.classList.toggle('active', el.dataset.lang === lang));
+          render();
+        };
+        row.appendChild(btn);
+      });
+    }
+
+    function wireControls() {
+      document.querySelectorAll('[data-category]').forEach(btn => {
+        btn.onclick = () => {
+          currentCategory = btn.dataset.category;
+          document.querySelectorAll('[data-category]').forEach(el => el.classList.toggle('active', el.dataset.category === currentCategory));
+          render();
+        };
+      });
+      document.querySelectorAll('[data-sort]').forEach(btn => {
+        btn.onclick = () => {
+          currentSort = btn.dataset.sort;
+          document.querySelectorAll('[data-sort]').forEach(el => el.classList.toggle('soft-active', el.dataset.sort === currentSort));
+          render();
+        };
+      });
+      document.querySelector('[data-lang="all"]').onclick = () => {
+        currentLang = 'all';
+        document.querySelectorAll('[data-lang]').forEach(el => el.classList.toggle('active', el.dataset.lang === 'all'));
+        render();
+      };
+      document.getElementById('searchInput').addEventListener('input', (e) => {
+        currentQuery = e.target.value.trim().toLowerCase();
+        render();
+      });
+    }
+
+    function filteredRepos() {
+      let repos = [...allRepos];
+      if (currentCategory !== 'all') repos = repos.filter(r => r._category === currentCategory);
+      if (currentLang !== 'all') repos = repos.filter(r => r.language === currentLang);
+      if (currentQuery) {
+        repos = repos.filter(r => `${r.name} ${r.description || ''} ${r.thai_description || ''} ${r.language || ''}`.toLowerCase().includes(currentQuery));
+      }
+      repos.sort((a, b) => {
+        if (currentSort === 'stars') return (b.stars || 0) - (a.stars || 0);
+        if (currentSort === 'forks') return (b.forks || 0) - (a.forks || 0);
+        if (currentSort === 'rank') return (a.rank || 0) - (b.rank || 0);
+        return (b.stars_today || 0) - (a.stars_today || 0);
+      });
+      return repos;
+    }
+
+    function renderHero(repos) {
+      const mount = document.getElementById('heroMount');
+      const hero = repos[0];
+      if (!hero) { mount.innerHTML = ''; return; }
+      const owner = hero.name.split('/')[0];
+      mount.innerHTML = `
+        <article class="hero-card">
+          <div class="hero-media" style="background:${coverGradient(hero)}">
+            <div class="latest-badge">🔥 มาแรงวันนี้</div>
+            <div class="hero-big">${hero.language || 'Trending'}<br>Repo</div>
+          </div>
+          <div class="hero-panel">
+            <div class="hero-meta">อัปเดตล่าสุด ${document.getElementById('updateDate').textContent} • ${owner}</div>
+            <h2 class="hero-title"><a href="${hero.url}" target="_blank">${hero.name}</a></h2>
+            <p class="hero-desc">${hero.thai_description || hero.description || ''}</p>
+            <div class="hero-stats">
+              <span>⭐ ${number(hero.stars)}</span>
+              <span>🍴 ${number(hero.forks)}</span>
+              <span>📈 +${number(hero.stars_today)} วันนี้</span>
+              <span>🏷️ ${hero.language || 'N/A'}</span>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderTagCloud(repos) {
+      const mount = document.getElementById('tagCloud');
+      const counts = new Map();
+      repos.forEach(r => {
+        const key = r.language || 'Other';
+        counts.set(key, (counts.get(key) || 0) + 1);
+      });
+      const tags = [...counts.entries()].sort((a,b) => b[1]-a[1]).slice(0, 12);
+      mount.innerHTML = tags.map(([name, count]) => `
+        <button class="tag-pill" onclick="setLangFromTag('${name.replace(/'/g, "\\'")}')">
+          <span>${iconForLang(name)}</span>
+          <span>${name}</span>
+          <span class="count">${count}</span>
+        </button>
+      `).join('');
+    }
+
+    function iconForLang(name) {
+      const map = {
+        JavaScript: '🟨', TypeScript: '🟦', Python: '🐍', Rust: '🦀', Go: '🐹', Java: '☕', Swift: '🪽', Other: '📦'
+      };
+      return map[name] || '🏷️';
+    }
+
+    function setLangFromTag(lang) {
+      currentLang = lang;
+      document.querySelectorAll('[data-lang]').forEach(el => el.classList.toggle('active', el.dataset.lang === lang));
+      render();
+    }
+
+    function renderGrid(repos) {
+      const grid = document.getElementById('repoGrid');
+      if (!repos.length) {
+        grid.innerHTML = '<div class="empty">ไม่พบ repos ตามเงื่อนไขที่เลือก</div>';
+        return;
+      }
+      grid.innerHTML = repos.map(repo => {
+        const owner = repo.name.split('/')[0];
+        const ownerAvatar = `https://github.com/${owner}.png?size=160`;
+        return `
+          <article class="repo-card">
+            <div class="repo-cover" style="background:${coverGradient(repo)}">
+              <div class="repo-topline">
+                <span class="mini-badge">${iconForLang(repo.language || 'Other')} ${repo.language || 'N/A'}</span>
+                <span class="repo-rank">#${repo.rank}</span>
+              </div>
+              <div class="cover-title">
+                <div class="owner-row">
+                  <img class="owner-avatar" src="${ownerAvatar}" alt="${owner}" loading="lazy" onerror="this.style.visibility='hidden'">
+                  <div class="repo-owner">${owner}</div>
+                </div>
+                <div class="repo-name-cover">${repo.name}</div>
+              </div>
+            </div>
+            <div class="repo-body">
+              <div class="thai-desc">${repo.thai_description || '-'}</div>
+              ${repo.description ? `<div class="english-desc">🇬🇧 ${repo.description}</div>` : ''}
+              <div class="meta-row">
+                <span class="meta-pill">⭐ ${number(repo.stars)}</span>
+                <span class="meta-pill">🍴 ${number(repo.forks)}</span>
+                <span class="meta-pill">📈 +${number(repo.stars_today)} วันนี้</span>
+              </div>
+              <div class="repo-footer">
+                <div class="repo-stats">
+                  <span>${labelForCategory(repo._category)}</span>
+                </div>
+                <a class="cta-link" href="${repo.url}" target="_blank">ดูบน GitHub →</a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function labelForCategory(cat) {
+      const map = {
+        'ai-ml': '🤖 AI & ML',
+        'web-mobile': '📱 Web & Mobile',
+        'devtools': '🛠️ Dev Tools',
+        'infra': '⚙️ Infrastructure',
+        'other': '🌐 อื่นๆ'
+      };
+      return map[cat] || '🌐 อื่นๆ';
+    }
+
+    function render() {
+      const repos = filteredRepos();
+      renderHero(repos);
+      renderTagCloud(repos.length ? repos : allRepos);
+      renderGrid(repos);
     }
 
     fetch('trending.json')
       .then(r => r.json())
       .then(data => {
-        document.getElementById('update-date').textContent = `อัปเดต: ${data.date}`;
-        allRepos = data.trending_repos;
-
-        // Tag each repo with a category
-        allRepos.forEach(repo => { repo._category = categorize(repo); });
-        
-        // Extract unique languages
-        const langs = new Set();
-        allRepos.forEach(repo => {
-          if (repo.language) langs.add(repo.language);
-        });
-        
-        // Build language filter buttons
-        const filtersEl = document.getElementById('filters');
-        const sortedLangs = Array.from(langs).sort();
-        sortedLangs.forEach(lang => {
-          const btn = document.createElement('button');
-          btn.className = 'filter-btn';
-          btn.textContent = lang;
-          btn.dataset.lang = lang;
-          btn.onclick = () => filterByLang(lang);
-          filtersEl.appendChild(btn);
-        });
-
-        // Wire up category buttons
-        document.querySelectorAll('.category-btn').forEach(btn => {
-          btn.onclick = () => filterByCategory(btn.dataset.category);
-        });
-        
-        applyFilters();
+        document.getElementById('updateDate').textContent = data.date;
+        allRepos = data.trending_repos.map(repo => ({ ...repo, _category: categorize(repo) }));
+        buildLanguageFilters();
+        wireControls();
+        render();
       })
-      .catch(err => {
-        document.getElementById('repos').innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text-dim)">ไม่สามารถโหลดข้อมูลได้</div>';
+      .catch(() => {
+        document.getElementById('repoGrid').innerHTML = '<div class="empty">ไม่สามารถโหลดข้อมูลได้</div>';
       });
-
-    function filterByCategory(cat) {
-      currentCategory = cat;
-      document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.category === cat);
-      });
-      applyFilters();
-    }
-
-    function filterByLang(lang) {
-      currentLang = lang;
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.lang === lang);
-      });
-      applyFilters();
-    }
-
-    function applyFilters() {
-      let filtered = allRepos;
-      if (currentCategory !== 'all') {
-        filtered = filtered.filter(r => r._category === currentCategory);
-      }
-      if (currentLang !== 'all') {
-        filtered = filtered.filter(r => r.language === currentLang);
-      }
-      renderRepos(filtered);
-    }
-
-    function renderRepos(repos) {
-      const container = document.getElementById('repos');
-      container.innerHTML = '';
-      
-      if (repos.length === 0) {
-        container.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text-dim)">ไม่พบ repos ในหมวดนี้</div>';
-        return;
-      }
-      
-      repos.forEach(repo => {
-        const div = document.createElement('div');
-        div.className = 'repo';
-        
-        // Extract owner from name (e.g., "owner/repo")
-        const owner = repo.name.split('/')[0];
-        const avatarUrl = `https://github.com/${owner}.png?size=160`;
-        
-        div.innerHTML = `
-          <div class="repo-grid">
-            <img src="${avatarUrl}" alt="${owner}" class="repo-avatar" loading="lazy" onerror="this.style.display='none'">
-            <div class="repo-content">
-              <div class="repo-header">
-                <h3><a href="${repo.url}" target="_blank">${repo.name}</a></h3>
-                <span class="rank">#${repo.rank}</span>
-              </div>
-              ${repo.thai_description ? `<div class="thai-desc">${repo.thai_description}</div>` : ''}
-              ${repo.description ? `<div class="english-desc"><span class="label-inline">🇬🇧</span>${repo.description}</div>` : ''}
-              <div class="stats">
-                ${repo.language ? `<span class="lang">${repo.language}</span>` : ''}
-                <span>⭐ ${repo.stars.toLocaleString()}</span>
-                <span>🍴 ${repo.forks.toLocaleString()}</span>
-                ${repo.stars_today ? `<span class="today">+${repo.stars_today.toLocaleString()} วันนี้</span>` : ''}
-              </div>
-            </div>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-    }
   </script>
 </body>
 </html>
