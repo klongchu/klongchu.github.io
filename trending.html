@@ -469,7 +469,7 @@
           </div>
           <div class="hero-panel">
             <div class="hero-meta">อัปเดตล่าสุด ${document.getElementById('updateDate').textContent} • ${owner}</div>
-            <h2 class="hero-title"><a href="${hero.url}" target="_blank">${hero.name}</a></h2>
+            <h2 class="hero-title"><a href="/repo-detail.html?repo=${encodeURIComponent(hero.name)}">${hero.name}</a></h2>
             <p class="hero-desc">${hero.thai_description || hero.description || ''}</p>
             <div class="hero-stats">
               <span>⭐ ${number(hero.stars)}</span>
@@ -551,7 +551,7 @@
                 <div class="repo-stats">
                   <span>${labelForCategory(repo._category)}</span>
                 </div>
-                <a class="cta-link" href="${repo.url}" target="_blank">ดูบน GitHub →</a>
+                <a class="cta-link" href="/repo-detail.html?repo=${encodeURIComponent(repo.name)}">อ่านเพิ่ม →</a>
               </div>
             </div>
           </article>
