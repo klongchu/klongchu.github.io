@@ -233,6 +233,50 @@
       font-weight: 600;
       margin-right: 0.35rem;
     }
+    .category-filter {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--surface-3);
+    }
+    .category-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      padding: 0.5rem 0;
+      font-size: clamp(0.95rem, 2vw, 1.05rem);
+      cursor: pointer;
+      transition: color 0.2s;
+      font-weight: 500;
+      position: relative;
+    }
+    .category-btn:hover {
+      color: var(--text);
+    }
+    .category-btn.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .category-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+    }
+    .filter-section {
+      margin-bottom: 2rem;
+    }
+    .filter-label {
+      color: var(--text-dim);
+      font-size: clamp(0.85rem, 1.8vw, 0.92rem);
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
     .stats {
       display: flex;
       gap: clamp(1rem, 3vw, 1.5rem);
@@ -339,11 +383,23 @@
         <p>📊 <a href="/diagram.html" target="_blank">ดู Architecture Diagram แบบละเอียด</a> | <a href="https://github.com/klongchu/klongchu.github.io" target="_blank">ดูโค้ด</a></p>
       </details>
     </div>
-    
-    <div class="filters" id="filters">
-      <button class="filter-btn active" data-lang="all">ทั้งหมด</button>
-    </div>
 
+    <div class="filter-section">
+      <div class="category-filter" id="categories">
+        <button class="category-btn active" data-category="all">ทั้งหมด</button>
+        <button class="category-btn" data-category="ai-ml">🤖 AI & ML</button>
+        <button class="category-btn" data-category="web-mobile">📱 Web & Mobile</button>
+        <button class="category-btn" data-category="devtools">🛠️ Dev Tools</button>
+        <button class="category-btn" data-category="infra">⚙️ Infrastructure</button>
+        <button class="category-btn" data-category="other">🌐 อื่นๆ</button>
+      </div>
+      
+      <div class="filter-label">กรองตามภาษา:</div>
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-lang="all">ทั้งหมด</button>
+      </div>
+    </div>
+    
     <div id="repos"></div>
   </main>
 
@@ -356,12 +412,37 @@
   <script>
     let allRepos = [];
     let currentLang = 'all';
+    let currentCategory = 'all';
+
+    // Categorize a repo based on name, description, language
+    function categorize(repo) {
+      const text = `${repo.name} ${repo.description || ''} ${repo.thai_description || ''}`.toLowerCase();
+      const lang = repo.language || '';
+
+      if (/\b(ai|ml|llm|gpt|claude|model|neural|agent|generative|foundation|cookbook|prompt)\b/.test(text)) {
+        return 'ai-ml';
+      }
+      if (/\b(browser|web|mobile|android|ios|react|vue|frontend|cms|website|app|flutter|swift)\b/.test(text) ||
+          ['Swift', 'Kotlin', 'Dart', 'JavaScript', 'TypeScript'].includes(lang)) {
+        return 'web-mobile';
+      }
+      if (/\b(cli|terminal|editor|ide|tool|review|debug|lint|file manager|sdk|framework|library)\b/.test(text)) {
+        return 'devtools';
+      }
+      if (/\b(server|vpn|database|db|sql|infra|devops|ci\/cd|jenkins|kubernetes|docker|network|proxy|deploy)\b/.test(text)) {
+        return 'infra';
+      }
+      return 'other';
+    }
 
     fetch('trending.json')
       .then(r => r.json())
       .then(data => {
         document.getElementById('update-date').textContent = `อัปเดต: ${data.date}`;
         allRepos = data.trending_repos;
+
+        // Tag each repo with a category
+        allRepos.forEach(repo => { repo._category = categorize(repo); });
         
         // Extract unique languages
         const langs = new Set();
@@ -369,7 +450,7 @@
           if (repo.language) langs.add(repo.language);
         });
         
-        // Build filter buttons
+        // Build language filter buttons
         const filtersEl = document.getElementById('filters');
         const sortedLangs = Array.from(langs).sort();
         sortedLangs.forEach(lang => {
@@ -380,22 +461,42 @@
           btn.onclick = () => filterByLang(lang);
           filtersEl.appendChild(btn);
         });
+
+        // Wire up category buttons
+        document.querySelectorAll('.category-btn').forEach(btn => {
+          btn.onclick = () => filterByCategory(btn.dataset.category);
+        });
         
-        renderRepos(allRepos);
+        applyFilters();
       })
       .catch(err => {
         document.getElementById('repos').innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text-dim)">ไม่สามารถโหลดข้อมูลได้</div>';
       });
+
+    function filterByCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.category === cat);
+      });
+      applyFilters();
+    }
 
     function filterByLang(lang) {
       currentLang = lang;
       document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.lang === lang);
       });
-      
-      const filtered = lang === 'all' 
-        ? allRepos 
-        : allRepos.filter(r => r.language === lang);
+      applyFilters();
+    }
+
+    function applyFilters() {
+      let filtered = allRepos;
+      if (currentCategory !== 'all') {
+        filtered = filtered.filter(r => r._category === currentCategory);
+      }
+      if (currentLang !== 'all') {
+        filtered = filtered.filter(r => r.language === currentLang);
+      }
       renderRepos(filtered);
     }
 
