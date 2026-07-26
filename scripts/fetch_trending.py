@@ -15,6 +15,50 @@ from html.parser import HTMLParser
 TRENDING_URL = "https://github.com/trending"
 OUTPUT = "trending.json"
 
+THAI_EXPLANATIONS = {
+    "permissionlesstech/bitchat": "แอปแชตแบบ Bluetooth mesh ใช้คุยกันได้แม้ไม่พึ่งอินเทอร์เน็ต แนวคิดคล้าย IRC สำหรับการสื่อสารระยะใกล้",
+    "citrolabs/ego-lite": "เบราว์เซอร์สำหรับ AI agent ใช้ทำ web automation และแชร์สถานะล็อกอินของ browser ให้ agent ใช้งานต่อได้",
+    "block/buzz": "แพลตฟอร์มสื่อสารแนว hive mind หรือระบบรวมความคิดและการประสานงานของหลายคน/หลาย agent",
+    "pingdotgg/t3code": "โปรเจกต์สาย TypeScript จาก t3 ecosystem ใช้เป็นฐานหรือเครื่องมือช่วยพัฒนาแอปสมัยใหม่",
+    "CoreBunch/Instatic": "CMS แบบ visual และ self-hosted แนว open-source แทน Webflow/Framer/WordPress โดยเน้น output เป็น static pages",
+    "yorukot/superfile": "โปรแกรมจัดการไฟล์บน terminal หน้าตาทันสมัย ใช้งานสะดวก สำหรับคนทำงานใน CLI",
+    "nodejs/node": "runtime สำหรับรัน JavaScript ฝั่ง server และเครื่องมือ command line เป็นแกนหลักของ ecosystem Node.js",
+    "OtterMind/Chat2DB": "เครื่องมือจัดการฐานข้อมูลและ SQL client ที่มี AI ช่วยเขียน query สำรวจ schema และทำงานกับหลาย DB",
+    "pbakaus/impeccable": "ชุดแนวคิดหรือ design language สำหรับช่วยให้ระบบ AI ทำงานด้าน design ได้ดีและสม่ำเสมอขึ้น",
+    "shiyu-coder/Kronos": "foundation model สำหรับข้อมูลตลาดการเงิน ใช้วิเคราะห์ลำดับเหตุการณ์และรูปแบบใน financial markets",
+    "alibaba/open-code-review": "เครื่องมือ code review แบบ hybrid ใช้ทั้งกฎเชิง deterministic และ LLM agent เพื่อช่วยตรวจ bug และช่องโหว่",
+    "andrewyng/aisuite": "ไลบรารีรวม interface สำหรับเรียกใช้งานผู้ให้บริการ Generative AI หลายเจ้า ผ่าน API รูปแบบเดียว",
+    "anthropics/claude-cookbooks": "ชุดตัวอย่าง notebook และ recipe สำหรับใช้งาน Claude ในงานจริง เช่น analysis, automation, และ prompting",
+    "Pumpkin-MC/Pumpkin": "ซอฟต์แวร์ server สำหรับ Minecraft ที่เน้นความเร็วและประสิทธิภาพในการโฮสต์เกม",
+    "permissionlesstech/bitchat-android": "เวอร์ชัน Android ของ bitchat ใช้แชตผ่าน Bluetooth mesh โดยไม่ต้องพึ่งเครือข่ายกลาง",
+    "jenkinsci/jenkins": "automation server สำหรับ CI/CD ใช้ build, test, deploy และ orchestrate งานพัฒนาซอฟต์แวร์",
+    "amnezia-vpn/amnezia-client": "ไคลเอนต์ VPN สำหรับเดสก์ท็อปและมือถือ ใช้เชื่อมต่อบริการ Amnezia VPN",
+}
+
+FALLBACK_THAI = {
+    "bluetooth mesh chat": "ระบบแชตผ่าน Bluetooth mesh",
+    "browser for ai agents": "เบราว์เซอร์สำหรับ AI agent",
+    "communication platform": "แพลตฟอร์มสื่อสาร",
+    "terminal file manager": "โปรแกรมจัดการไฟล์บน terminal",
+    "database tool": "เครื่องมือจัดการฐานข้อมูล",
+    "sql client": "โปรแกรมสำหรับใช้งาน SQL",
+    "javascript runtime": "runtime สำหรับ JavaScript",
+    "foundation model": "foundation model สำหรับงานเฉพาะทาง",
+    "code review tool": "เครื่องมือช่วย code review",
+    "interface to multiple generative ai providers": "เครื่องมือรวมทางเข้า API ของผู้ให้บริการ AI หลายเจ้า",
+}
+
+
+def thai_summary(name, description):
+    if name in THAI_EXPLANATIONS:
+        return THAI_EXPLANATIONS[name]
+    desc = (description or "").strip()
+    low = desc.lower()
+    for key, value in FALLBACK_THAI.items():
+        if key in low:
+            return value
+    return f"โปรเจกต์ภาษา {name.split('/')[0]}: {desc}" if desc else None
+
 
 class TrendingParser(HTMLParser):
     """Extract repo rows from the trending page markup."""
@@ -80,23 +124,23 @@ def parse_int(text):
     return int(re.sub(r"[^\d]", "", text) or 0)
 
 
+def _extract_count_after_link(html, name, kind):
+    m = re.search(rf'href="/{re.escape(name)}/{kind}"[^>]*>(.*?)</a>', html, re.S)
+    if not m:
+        return 0
+    text = re.sub(r'<[^>]+>', ' ', m.group(1))
+    return parse_int(text)
+
+
 def enrich_stats(html, repos):
-    """Pull star/fork counts and 'stars today' via regex over the full page."""
-    # stars today: e.g. "1,198 stars today"
-    today_map = {}
-    for m in re.finditer(r'([\d,]+)\s+stars today', html):
-        today_map.setdefault(m.start(), parse_int(m.group(1)))
+    """Pull star/fork counts and 'stars today' via regex over full page."""
     todays = [parse_int(m.group(1)) for m in re.finditer(r'([\d,]+)\s+stars today', html)]
 
-    # star & fork counts follow /owner/repo/stargazers and /forks hrefs
     for repo in repos:
         name = repo["name"]
-        s = re.search(rf'href="/{re.escape(name)}/stargazers"[^>]*>\s*([\d,]+)', html)
-        f = re.search(rf'href="/{re.escape(name)}/forks"[^>]*>\s*([\d,]+)', html)
-        if s:
-            repo["stars"] = parse_int(s.group(1))
-        if f:
-            repo["forks"] = parse_int(f.group(1))
+        repo["stars"] = _extract_count_after_link(html, name, 'stargazers')
+        repo["forks"] = _extract_count_after_link(html, name, 'forks')
+
     for i, repo in enumerate(repos):
         if i < len(todays):
             repo["stars_today"] = todays[i]
@@ -122,6 +166,7 @@ def main():
     # reorder keys
     ordered = [{
         "rank": r["rank"], "name": r["name"], "description": r["description"],
+        "thai_description": thai_summary(r["name"], r["description"]),
         "language": r["language"], "stars": r["stars"], "forks": r["forks"],
         "stars_today": r["stars_today"], "url": r["url"],
     } for r in repos]

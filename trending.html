@@ -216,6 +216,23 @@
       line-height: 1.6;
       margin-bottom: 0.75rem;
     }
+    .thai-desc {
+      color: var(--text);
+      font-size: clamp(0.95rem, 2vw, 1.02rem);
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+    .english-desc {
+      color: var(--text-dim);
+      font-size: clamp(0.82rem, 1.8vw, 0.92rem);
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+    .label-inline {
+      color: var(--accent);
+      font-weight: 600;
+      margin-right: 0.35rem;
+    }
     .stats {
       display: flex;
       gap: clamp(1rem, 3vw, 1.5rem);
@@ -407,7 +424,8 @@
                 <h3><a href="${repo.url}" target="_blank">${repo.name}</a></h3>
                 <span class="rank">#${repo.rank}</span>
               </div>
-              ${repo.description ? `<div class="desc">${repo.description}</div>` : ''}
+              ${repo.thai_description ? `<div class="thai-desc">${repo.thai_description}</div>` : ''}
+              ${repo.description ? `<div class="english-desc"><span class="label-inline">🇬🇧</span>${repo.description}</div>` : ''}
               <div class="stats">
                 ${repo.language ? `<span class="lang">${repo.language}</span>` : ''}
                 <span>⭐ ${repo.stars.toLocaleString()}</span>
