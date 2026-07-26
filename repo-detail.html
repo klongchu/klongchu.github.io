@@ -150,8 +150,15 @@
     .readme-section h2 { font-size: 24px; margin-bottom: 16px; letter-spacing: -.02em; }
     .readme-content {
       background: #f9fafb; border: 1px solid var(--line); border-radius: 16px; padding: 24px;
-      font-family: monospace; font-size: 14px; line-height: 1.7; color: #374151;
-      max-height: 400px; overflow-y: auto;
+      font-size: 15px; line-height: 1.85; color: #374151;
+      max-height: 720px; overflow-y: auto; white-space: pre-wrap;
+    }
+    .readme-content .md-h2 {
+      font-size: 20px; line-height: 1.35; font-weight: 800; color: #111827;
+      margin: 20px 0 10px;
+    }
+    .readme-content .md-p {
+      margin: 0 0 14px;
     }
 
     .related-section {
@@ -281,9 +288,9 @@
         </div>
 
         <div class="readme-section">
-          <h2>คำอธิบายจาก GitHub</h2>
+          <h2>📄 เนื้อหาจาก README (ภาษาไทย)</h2>
           <div class="readme-content" id="readmeContent">
-            กำลังโหลดข้อมูลจาก GitHub...
+            <!-- populated by JS -->
           </div>
         </div>
 
@@ -388,9 +395,20 @@
         <span class="stat-pill">🏷️ ${repo.language || 'N/A'}</span>
       `;
 
-      document.getElementById('readmeContent').textContent = repo.readme_excerpt
-        ? repo.readme_excerpt.replaceAll('\\n', '\n')
-        : 'ไม่พบ README ของโครงการนี้';
+      const full = (rs.readme_thai_full || '').trim();
+      if (full) {
+        const html = full.split('\n').map(line => {
+          const t = line.trim();
+          if (!t) return '';
+          if (t.startsWith('## ')) return `<div class="md-h2">${t.slice(3)}</div>`;
+          return `<div class="md-p">${t}</div>`;
+        }).join('');
+        document.getElementById('readmeContent').innerHTML = html;
+      } else {
+        document.getElementById('readmeContent').textContent = repo.readme_excerpt
+          ? repo.readme_excerpt.replaceAll('\\n', '\n')
+          : 'ไม่พบ README ของโครงการนี้';
+      }
     }
 
     function renderRelated(repos, current) {

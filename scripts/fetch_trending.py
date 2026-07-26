@@ -339,6 +339,12 @@ def summarize_readme_th(name, description):
     formal_sections = summarize_readme_sections_th(md)
     if formal_sections:
         summary.update(formal_sections)
+    
+    # Full TH README paragraphs
+    thai_full = translate_readme_paragraphs(md)
+    if thai_full:
+        summary['readme_thai_full'] = thai_full
+    
     return summary, '\\n'.join(lines[:80]), readme_image_url(name, md), md
 
 
@@ -368,7 +374,7 @@ def google_translate_th(text):
         q = urllib.parse.quote(text)
         url = f"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=th&dt=t&q={q}"
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=15) as resp:
+        with urllib.request.urlopen(req, timeout=8) as resp:
             data = json.loads(resp.read().decode("utf-8"))
             result = ""
             for sentence in data[0]:
@@ -412,6 +418,65 @@ def summarize_readme_sections_th(md):
         'how_to_use_formal_th': usage,
         'installation_formal_th': install,
     }
+
+def translate_readme_paragraphs(md):
+    """Translate README paragraph by paragraph to Thai with section headers preserved."""
+    if not md:
+        return None
+    
+    lines = md.splitlines()
+    sections = []
+    current_heading = ''
+    current_para = []
+    
+    for line in lines[:120]:
+        s = line.strip()
+        if s.startswith('#'):
+            # flush previous
+            if current_para:
+              sections.append((current_heading, ' '.join(current_para)))
+              current_para = []
+            # get heading text
+            h = re.sub(r'^#+\s*', '', s)
+            h = re.sub(r'<[^>]+>', '', h)
+            if h:
+              current_heading = h
+        elif s and not s.startswith('![') and not s.startswith('<') and not s.startswith('[') and not s.startswith('```') and not s.startswith('---') and not s.startswith('|'):
+            clean = re.sub(r'<[^>]+>', '', s)
+            clean = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', clean)
+            clean = re.sub(r'[*_`]', '', clean)
+            if len(clean) > 20:
+                current_para.append(clean)
+        elif s == '' and current_para:
+            sections.append((current_heading, ' '.join(current_para)))
+            current_para = []
+    
+    if current_para:
+        sections.append((current_heading, ' '.join(current_para)))
+    
+    if not sections:
+        return None
+    
+    result = []
+    translated_count = 0
+    for heading, text in sections:
+        if translated_count >= 12:
+            break
+        if not text or len(text) < 15:
+            continue
+        # Shorter chunks → faster, more concise
+        translated = google_translate_th(text[:220])
+        if not translated:
+            continue
+        translated_count += 1
+        if heading and len(heading) < 80:
+            result.append(f"## {heading}")
+        result.append(translated)
+        result.append('')
+    
+    final = '\n'.join(result).strip()
+    return final[:3000] if final else None
+
 
 
 class TrendingParser(HTMLParser):
