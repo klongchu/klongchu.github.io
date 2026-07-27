@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Archive — klongchu</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --surface-2: #f8fafc;
+      --line: #e5e7eb;
+      --text: #111827;
+      --muted: #6b7280;
+      --blue: #2563eb;
+      --blue-2: #dbeafe;
+      --shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Thai", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(229,231,235,.9);
+    }
+    .topbar-inner {
+      min-height: 76px;
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      gap: 20px;
+      align-items: center;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 12px; font-weight: 800;
+    }
+    .brand-avatar {
+      width: 42px; height: 42px; border-radius: 999px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, #60a5fa, #2563eb);
+      color: white; font-size: 18px; box-shadow: var(--shadow);
+    }
+    .brand-text small { display: block; color: var(--muted); font-weight: 600; font-size: 12px; }
+    .brand-text span { display: block; font-size: 18px; letter-spacing: -.02em; }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+      color: var(--muted); font-size: 14px; font-weight: 600;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .search-wrap {
+      position: relative; width: min(260px, 100%);
+    }
+    .search {
+      width: 100%; border: 1px solid var(--line); background: #fff;
+      border-radius: 999px; padding: 12px 16px 12px 40px;
+      color: var(--text); font-size: 14px; outline: none;
+    }
+    .search:focus { border-color: #93c5fd; box-shadow: 0 0 0 4px rgba(37,99,235,.08); }
+    .search-icon {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: #94a3b8; font-size: 14px;
+    }
+    .ghost-btn {
+      border: 1px solid var(--line); background: #fff; color: var(--muted);
+      padding: 10px 14px; border-radius: 999px; font-size: 14px; font-weight: 700;
+    }
+
+    main { padding: 28px 0 56px; }
+    .page-title { margin-bottom: 18px; }
+    .page-title h1 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -.03em; line-height: 1.1; }
+    .page-title p { margin-top: 8px; color: var(--muted); font-size: 15px; }
+
+    .category-row, .year-row, .sort-row, .tag-row {
+      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    }
+    .toolbar { display: grid; gap: 14px; margin-bottom: 24px; }
+    .chip {
+      border: 1px solid var(--line); background: #fff; color: var(--text);
+      padding: 10px 14px; border-radius: 999px; font-size: 14px; font-weight: 700;
+      cursor: pointer; transition: .18s ease;
+    }
+    .chip:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+    .chip.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .chip.soft-active { background: var(--text); color: #fff; border-color: var(--text); }
+    .toolbar-label { color: var(--muted); font-size: 14px; font-weight: 700; margin-right: 4px; }
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 24px; overflow: hidden; box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      display: grid; grid-template-columns: 1.1fr .9fr;
+    }
+    .hero-media {
+      min-height: 280px;
+      background: linear-gradient(135deg, #fef3c7, #fde68a 30%, #bfdbfe 100%);
+      padding: 28px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .latest-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.85); color: #92400e;
+      border: 1px solid rgba(251,191,36,.35);
+      padding: 8px 12px; border-radius: 999px; font-size: 13px; font-weight: 800;
+      width: fit-content;
+    }
+    .hero-big {
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 900; line-height: .95; color: #1f2937; letter-spacing: -.05em;
+      max-width: 320px;
+    }
+    .hero-panel {
+      padding: 28px; display: grid; align-content: center; gap: 14px;
+    }
+    .hero-meta { color: var(--muted); font-size: 14px; font-weight: 700; }
+    .hero-title { font-size: clamp(24px, 3vw, 34px); line-height: 1.15; letter-spacing: -.03em; }
+    .hero-desc { color: var(--muted); font-size: 15px; }
+    .hero-stats { display: flex; gap: 14px; flex-wrap: wrap; color: var(--muted); font-size: 14px; font-weight: 700; }
+
+    .tag-cloud {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px;
+    }
+    .tag-pill {
+      background: #fff; border: 1px solid var(--line); border-radius: 999px;
+      padding: 10px 14px; font-size: 14px; font-weight: 700; color: #334155;
+      display: inline-flex; gap: 8px; align-items: center;
+    }
+    .tag-pill .count { color: var(--muted); font-weight: 800; }
+
+    .section-head {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      margin-bottom: 14px;
+    }
+    .section-head h2 { font-size: 20px; letter-spacing: -.02em; }
+    .view-toggle { display: flex; gap: 8px; }
+    .toggle-btn {
+      border: 1px solid var(--line); background: #fff; color: var(--muted);
+      padding: 10px 12px; border-radius: 12px; font-size: 14px; cursor: pointer;
+    }
+    .toggle-btn.active { background: var(--text); color: #fff; border-color: var(--text); }
+
+    .repo-grid {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;
+    }
+    .repo-card {
+      display: flex; flex-direction: column;
+      background: #fff; border: 1px solid var(--line); border-radius: 20px;
+      overflow: hidden; box-shadow: var(--shadow); transition: .18s ease;
+      min-height: 100%;
+    }
+    .repo-card:hover { transform: translateY(-3px); }
+    .repo-cover {
+      position: relative;
+      padding: 18px;
+      min-height: 200px;
+      aspect-ratio: 2 / 1;
+      display: flex; flex-direction: column; justify-content: space-between;
+      background: linear-gradient(135deg, #dbeafe, #e0e7ff 50%, #fef3c7 100%);
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+    .repo-cover::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.55) 100%);
+      pointer-events: none;
+    }
+    .repo-cover > * { position: relative; z-index: 1; }
+    .repo-cover.has-image .repo-name-cover,
+    .repo-cover.has-image .repo-owner {
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    }
+    .repo-cover.has-image .mini-badge {
+      background: rgba(255,255,255,0.95);
+    }
+    .repo-topline {
+      display: flex; justify-content: space-between; align-items: start; gap: 12px;
+    }
+    .mini-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.85); color: #1d4ed8;
+      border: 1px solid rgba(59,130,246,.15);
+      padding: 7px 10px; border-radius: 999px; font-size: 12px; font-weight: 800;
+    }
+    .repo-rank {
+      background: rgba(17,24,39,.9); color: #fff; border-radius: 999px; padding: 7px 10px;
+      font-size: 12px; font-weight: 800;
+    }
+    .cover-title {
+      display: grid; gap: 10px;
+    }
+    .owner-row { display: flex; align-items: center; gap: 10px; }
+    .owner-avatar {
+      width: 42px; height: 42px; border-radius: 12px; object-fit: cover; border: 2px solid rgba(255,255,255,.8);
+      background: rgba(255,255,255,.8);
+    }
+    .repo-name-cover {
+      font-size: 20px; font-weight: 900; line-height: 1.12; letter-spacing: -.03em; color: #0f172a;
+      word-break: break-word;
+    }
+    .repo-owner { color: #475569; font-size: 13px; font-weight: 700; }
+
+    .repo-body { padding: 18px; display: grid; gap: 12px; }
+    .thai-desc {
+      font-size: 15px; line-height: 1.65; color: #111827; font-weight: 500;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .english-desc {
+      font-size: 13px; line-height: 1.55; color: var(--muted);
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .meta-row {
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .meta-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 800; color: #475569;
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 999px; padding: 7px 10px;
+    }
+    .repo-footer {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      padding-top: 4px; color: var(--muted); font-size: 13px; font-weight: 700;
+    }
+    .repo-stats { display: flex; gap: 10px; flex-wrap: wrap; }
+    .cta-link { color: var(--blue); font-weight: 800; }
+
+    .empty {
+      background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 30px; text-align: center; color: var(--muted);
+    }
+
+    .newsletter {
+      margin-top: 40px; background: #fff; border: 1px solid var(--line); border-radius: 24px;
+      padding: 24px; box-shadow: var(--shadow);
+      display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap;
+    }
+    .newsletter h3 { font-size: 22px; letter-spacing: -.02em; }
+    .newsletter p { color: var(--muted); font-size: 14px; margin-top: 6px; }
+    .newsletter-form { display: flex; gap: 10px; flex-wrap: wrap; }
+    .newsletter input {
+      min-width: 240px; border: 1px solid var(--line); border-radius: 999px; padding: 12px 16px; font-size: 14px;
+    }
+    .primary-btn {
+      background: var(--blue); color: #fff; border: none; border-radius: 999px;
+      padding: 12px 18px; font-size: 14px; font-weight: 800; cursor: pointer;
+    }
+
+    footer {
+      padding: 24px 0 40px; color: var(--muted); font-size: 14px;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-card { grid-template-columns: 1fr; }
+      .repo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .topbar-inner { grid-template-columns: 1fr; padding: 14px 0; }
+      .search-wrap { width: 100%; }
+    }
+    @media (max-width: 720px) {
+      .repo-grid { grid-template-columns: 1fr; }
+      .hero-media { min-height: 220px; }
+      .hero-big { max-width: none; }
+      .newsletter { align-items: start; }
+      .newsletter-form { width: 100%; }
+      .newsletter input { min-width: 100%; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="/">
+        <div class="brand-avatar">K</div>
+        <div class="brand-text">
+          <small>GitHub Trends Daily</small>
+          <span>klongchu</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="/">หน้าแรก</a>
+        <a href="/blog.html">บล็อก</a>
+        <a href="/archive.html">Trending</a>
+        <a href="/diagram.html">Architecture</a>
+      </nav>
+
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input id="searchInput" class="search" type="search" placeholder="ค้นหา repo, owner, คำอธิบาย...">
+      </div>
+
+      <a class="ghost-btn" href="https://github.com/klongchu/klongchu.github.io" target="_blank">ดูโค้ด</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="page-title">
+        <h1>GitHub Trending</h1>
+        <p>รวม repo ที่กำลังมาแรง พร้อมคำอธิบายภาษาไทย หมวดหมู่ และตัวกรองแบบอ่านง่าย</p>
+      </section>
+
+      <section class="toolbar">
+        <div class="category-row" id="categoryRow">
+          <button class="chip active" data-category="all">ทั้งหมด</button>
+          <button class="chip" data-category="ai-ml">🤖 AI & ML</button>
+          <button class="chip" data-category="web-mobile">📱 Web & Mobile</button>
+          <button class="chip" data-category="devtools">🛠️ Dev Tools</button>
+          <button class="chip" data-category="infra">⚙️ Infrastructure</button>
+          <button class="chip" data-category="other">🌐 อื่นๆ</button>
+        </div>
+
+        <div class="year-row" id="languageRow">
+          <button class="chip active" data-lang="all">ทุกภาษา</button>
+        </div>
+
+        <div class="sort-row" id="sortRow">
+          <span class="toolbar-label">เรียงตาม:</span>
+          <button class="chip soft-active" data-sort="today">มาแรงวันนี้</button>
+          <button class="chip" data-sort="stars">Stars ทั้งหมด</button>
+          <button class="chip" data-sort="forks">Forks</button>
+          <button class="chip" data-sort="rank">อันดับ</button>
+        </div>
+      </section>
+
+      <section id="heroMount"></section>
+      <section class="tag-cloud" id="tagCloud"></section>
+
+      <section>
+        <div class="section-head">
+          <h2>โพสต์ก่อนหน้า / Repos ทั้งหมด</h2>
+          <div class="view-toggle">
+            <button class="toggle-btn active" type="button">▥</button>
+            <button class="toggle-btn" type="button">☰</button>
+          </div>
+        </div>
+        <div class="repo-grid" id="repoGrid"></div>
+      </section>
+
+      <section class="newsletter">
+        <div>
+          <h3>รับสรุปเทรนด์ GitHub ส่งตรงถึงอีเมล</h3>
+          <p>หน้านี้อัปเดตอัตโนมัติทุกวันผ่าน GitHub Actions และ GitHub Pages</p>
+        </div>
+        <form class="newsletter-form" onsubmit="event.preventDefault()">
+          <input type="email" placeholder="อีเมลของคุณ">
+          <button class="primary-btn" type="submit">รับข่าวสาร</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 klongchu • Built with GitHub Pages • อัปเดต: <span id="updateDate">Loading...</span></div>
+  </footer>
+
+  <script>
+    let allRepos = [];
+    let currentCategory = 'all';
+    let currentLang = 'all';
+    let currentSort = 'today';
+    let currentQuery = '';
+
+    function categorize(repo) {
+      const text = `${repo.name} ${repo.description || ''} ${repo.thai_description || ''}`.toLowerCase();
+      const lang = repo.language || '';
+      if (/\b(ai|ml|llm|gpt|claude|model|neural|agent|generative|foundation|cookbook|prompt)\b/.test(text)) return 'ai-ml';
+      if (/\b(browser|web|mobile|android|ios|react|vue|frontend|cms|website|app|flutter|swift)\b/.test(text) || ['Swift','Kotlin','Dart','JavaScript','TypeScript'].includes(lang)) return 'web-mobile';
+      if (/\b(cli|terminal|editor|ide|tool|review|debug|lint|file manager|sdk|framework|library)\b/.test(text)) return 'devtools';
+      if (/\b(server|vpn|database|db|sql|infra|devops|ci\/cd|jenkins|kubernetes|docker|network|proxy|deploy)\b/.test(text)) return 'infra';
+      return 'other';
+    }
+
+    function coverGradient(repo) {
+      const map = {
+        'ai-ml': 'linear-gradient(135deg, #ede9fe, #ddd6fe 45%, #bfdbfe)',
+        'web-mobile': 'linear-gradient(135deg, #dbeafe, #bfdbfe 45%, #fef3c7)',
+        'devtools': 'linear-gradient(135deg, #dcfce7, #bbf7d0 45%, #bfdbfe)',
+        'infra': 'linear-gradient(135deg, #fee2e2, #fecaca 45%, #fde68a)',
+        'other': 'linear-gradient(135deg, #f3f4f6, #e5e7eb 45%, #dbeafe)'
+      };
+      return map[repo._category] || map.other;
+    }
+
+    function number(n) { return (n || 0).toLocaleString(); }
+
+    function buildLanguageFilters() {
+      const row = document.getElementById('languageRow');
+      const langs = [...new Set(allRepos.map(r => r.language).filter(Boolean))].sort();
+      langs.forEach(lang => {
+        const btn = document.createElement('button');
+        btn.className = 'chip';
+        btn.dataset.lang = lang;
+        btn.textContent = lang;
+        btn.onclick = () => {
+          currentLang = lang;
+          document.querySelectorAll('[data-lang]').forEach(el => el.classList.toggle('active', el.dataset.lang === lang));
+          render();
+        };
+        row.appendChild(btn);
+      });
+    }
+
+    function wireControls() {
+      document.querySelectorAll('[data-category]').forEach(btn => {
+        btn.onclick = () => {
+          currentCategory = btn.dataset.category;
+          document.querySelectorAll('[data-category]').forEach(el => el.classList.toggle('active', el.dataset.category === currentCategory));
+          render();
+        };
+      });
+      document.querySelectorAll('[data-sort]').forEach(btn => {
+        btn.onclick = () => {
+          currentSort = btn.dataset.sort;
+          document.querySelectorAll('[data-sort]').forEach(el => el.classList.toggle('soft-active', el.dataset.sort === currentSort));
+          render();
+        };
+      });
+      document.querySelector('[data-lang="all"]').onclick = () => {
+        currentLang = 'all';
+        document.querySelectorAll('[data-lang]').forEach(el => el.classList.toggle('active', el.dataset.lang === 'all'));
+        render();
+      };
+      document.getElementById('searchInput').addEventListener('input', (e) => {
+        currentQuery = e.target.value.trim().toLowerCase();
+        render();
+      });
+    }
+
+    function filteredRepos() {
+      let repos = [...allRepos];
+      if (currentCategory !== 'all') repos = repos.filter(r => r._category === currentCategory);
+      if (currentLang !== 'all') repos = repos.filter(r => r.language === currentLang);
+      if (currentQuery) {
+        repos = repos.filter(r => `${r.name} ${r.description || ''} ${r.thai_description || ''} ${r.language || ''}`.toLowerCase().includes(currentQuery));
+      }
+      repos.sort((a, b) => {
+        if (currentSort === 'stars') return (b.stars || 0) - (a.stars || 0);
+        if (currentSort === 'forks') return (b.forks || 0) - (a.forks || 0);
+        if (currentSort === 'rank') return (a.rank || 0) - (b.rank || 0);
+        return (b.stars_today || 0) - (a.stars_today || 0);
+      });
+      return repos;
+    }
+
+    function renderHero(repos) {
+      const mount = document.getElementById('heroMount');
+      const hero = repos[0];
+      if (!hero) { mount.innerHTML = ''; return; }
+      const owner = hero.name.split('/')[0];
+      const heroStyle = hero.image
+        ? `background-image: linear-gradient(180deg, rgba(15,23,42,0.18), rgba(15,23,42,0.48)), url('${hero.image}'); background-size: cover; background-position: center;`
+        : `background:${coverGradient(hero)}`;
+      mount.innerHTML = `
+        <article class="hero-card">
+          <div class="hero-media" style="${heroStyle}">
+            <div class="latest-badge">🔥 มาแรงวันนี้</div>
+            <div class="hero-big">${hero.language || 'Trending'}<br>Repo</div>
+          </div>
+          <div class="hero-panel">
+            <div class="hero-meta">อัปเดตล่าสุด ${document.getElementById('updateDate').textContent} • ${owner}</div>
+            <h2 class="hero-title"><a href="/repo-detail.html?repo=${encodeURIComponent(hero.name)}">${hero.name}</a></h2>
+            <p class="hero-desc">${hero.thai_description || hero.description || ''}</p>
+            <div class="hero-stats">
+              <span>⭐ ${number(hero.stars)}</span>
+              <span>🍴 ${number(hero.forks)}</span>
+              <span>📈 +${number(hero.stars_today)} วันนี้</span>
+              <span>🏷️ ${hero.language || 'N/A'}</span>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderTagCloud(repos) {
+      const mount = document.getElementById('tagCloud');
+      const counts = new Map();
+      repos.forEach(r => {
+        const key = r.language || 'Other';
+        counts.set(key, (counts.get(key) || 0) + 1);
+      });
+      const tags = [...counts.entries()].sort((a,b) => b[1]-a[1]).slice(0, 12);
+      mount.innerHTML = tags.map(([name, count]) => `
+        <button class="tag-pill" onclick="setLangFromTag('${name.replace(/'/g, "\\'")}')">
+          <span>${iconForLang(name)}</span>
+          <span>${name}</span>
+          <span class="count">${count}</span>
+        </button>
+      `).join('');
+    }
+
+    function iconForLang(name) {
+      const map = {
+        JavaScript: '🟨', TypeScript: '🟦', Python: '🐍', Rust: '🦀', Go: '🐹', Java: '☕', Swift: '🪽', Other: '📦'
+      };
+      return map[name] || '🏷️';
+    }
+
+    function setLangFromTag(lang) {
+      currentLang = lang;
+      document.querySelectorAll('[data-lang]').forEach(el => el.classList.toggle('active', el.dataset.lang === lang));
+      render();
+    }
+
+    function renderGrid(repos) {
+      const grid = document.getElementById('repoGrid');
+      if (!repos.length) {
+        grid.innerHTML = '<div class="empty">ไม่พบ repos ตามเงื่อนไขที่เลือก</div>';
+        return;
+      }
+      grid.innerHTML = repos.map(repo => {
+        const owner = repo.name.split('/')[0];
+        const ownerAvatar = `https://github.com/${owner}.png?size=160`;
+        const cover = repo.image || '';
+        const style = cover ? `background-image:url('${cover}');` : `background:${coverGradient(repo)}`;
+        const cls = cover ? 'repo-cover has-image' : 'repo-cover';
+        return `
+          <article class="repo-card">
+            <div class="${cls}" style="${style}">
+              <div class="repo-topline">
+                <span class="mini-badge">${iconForLang(repo.language || 'Other')} ${repo.language || 'N/A'}</span>
+                <span class="repo-rank">#${repo.rank}</span>
+              </div>
+              <div class="cover-title">
+                <div class="owner-row">
+                  <img class="owner-avatar" src="${ownerAvatar}" alt="${owner}" loading="lazy" onerror="this.style.visibility='hidden'">
+                  <div class="repo-owner">${owner}</div>
+                </div>
+                <div class="repo-name-cover">${repo.name}</div>
+              </div>
+            </div>
+            <div class="repo-body">
+              <div class="thai-desc">${repo.thai_description || '-'}</div>
+              ${repo.description ? `<div class="english-desc">🇬🇧 ${repo.description}</div>` : ''}
+              <div class="meta-row">
+                <span class="meta-pill">⭐ ${number(repo.stars)}</span>
+                <span class="meta-pill">🍴 ${number(repo.forks)}</span>
+                <span class="meta-pill">📈 +${number(repo.stars_today)} วันนี้</span>
+              </div>
+              <div class="repo-footer">
+                <div class="repo-stats">
+                  <span>${labelForCategory(repo._category)}</span>
+                </div>
+                <a class="cta-link" href="/repo-detail.html?repo=${encodeURIComponent(repo.name)}">อ่านเพิ่ม →</a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function labelForCategory(cat) {
+      const map = {
+        'ai-ml': '🤖 AI & ML',
+        'web-mobile': '📱 Web & Mobile',
+        'devtools': '🛠️ Dev Tools',
+        'infra': '⚙️ Infrastructure',
+        'other': '🌐 อื่นๆ'
+      };
+      return map[cat] || '🌐 อื่นๆ';
+    }
+
+    function render() {
+      const repos = filteredRepos();
+      renderHero(repos);
+      renderTagCloud(repos.length ? repos : allRepos);
+      renderGrid(repos);
+    }
+
+    fetch('archive.json')
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('updateDate').textContent = data.date;
+        const src = data.repos ? Object.values(data.repos) : (data.trending_repos || []);
+        allRepos = src.map(repo => ({ ...repo, _category: categorize(repo) }));
+        buildLanguageFilters();
+        wireControls();
+        render();
+      })
+      .catch(() => {
+        document.getElementById('repoGrid').innerHTML = '<div class="empty">ไม่สามารถโหลดข้อมูลได้</div>';
+      });
+  </script>
+</body>
+</html>
