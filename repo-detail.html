@@ -428,16 +428,25 @@
       }).join('');
     }
 
-    fetch('/trending.json')
-      .then(r => r.json())
-      .then(data => {
-        const repo = data.trending_repos.find(r => r.name === repoName);
+    Promise.all([
+      fetch('/trending.json').then(r => r.json()),
+      fetch('/archive.json').then(r => r.json())
+    ])
+      .then(([trendingData, archiveData]) => {
+        let repo = trendingData.trending_repos.find(r => r.name === repoName);
+        if (!repo && archiveData.repos) {
+          repo = archiveData.repos[repoName];
+        }
         if (!repo) {
           window.location.href = '/trending.html';
           return;
         }
         renderDetail(repo);
-        renderRelated(data.trending_repos, repoName);
+        const combined = [
+          ...(trendingData.trending_repos || []),
+          ...Object.values(archiveData.repos || {})
+        ];
+        renderRelated(combined, repoName);
       })
       .catch(() => {
         document.getElementById('contentArea').innerHTML = '<p>ไม่สามารถโหลดข้อมูลได้</p>';
