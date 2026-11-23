@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-22",
-  "updated_at": "2026-11-22T07:20:18.033183+00:00",
+  "date": "2026-11-23",
+  "updated_at": "2026-11-23T08:03:26.098388+00:00",
   "trending_repos": [
     {
       "rank": 1,
@@ -8,9 +8,9 @@
       "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
       "thai_description": "โปรเจกต์นี้คือ Built by Sachin Sharma — Bug Hunting & GenAI Security Research. claude-bughunter is a drop-in skill bundle for the Claude Code skills system. Install once and Claude Code stops being a chatbot and starts behaving like a senior bug-hunting researcher or red-team operator: it knows the techniques, the chain templates, the VRT mappings, the platform C",
       "language": "Python",
-      "stars": 16450,
-      "forks": 1866,
-      "stars_today": 1803,
+      "stars": 18459,
+      "forks": 2022,
+      "stars_today": 1716,
       "url": "https://github.com/elementalsouls/Claude-BugHunter",
       "image": "https://raw.githubusercontent.com/elementalsouls/Claude-BugHunter/HEAD/assets/sponsors/apismart-light.png",
       "readme_summary": {
@@ -29,9 +29,9 @@
       "description": "An agentic skills framework & software development methodology that works.",
       "thai_description": "โปรเจกต์นี้คือ Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them. It starts from the moment you fire up your coding agent. As soon as it sees that you're building something, it doesn't just jump into trying to write code. I",
       "language": "Shell",
-      "stars": 323890,
-      "forks": 28730,
-      "stars_today": 883,
+      "stars": 324438,
+      "forks": 28786,
+      "stars_today": 788,
       "url": "https://github.com/obra/superpowers",
       "image": "https://opengraph.githubassets.com/1/obra/superpowers",
       "readme_summary": {
@@ -50,9 +50,9 @@
       "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/",
       "thai_description": "โปรเจกต์นี้คือ &nbsp; CLI-Anything: Making ALL Software Agent-Native Today's Software Serves Humans👨‍💻. Tomorrow's Users will be Agents🤖. CLI-Anything: Bridging the Gap Between AI Agents and the World's Software 🎬 See Demos: Watch AI agents use generated CLIs plus preview, live preview, and trajectory loops to produce real artifacts — CAD builds, 3D scenes, diagr",
       "language": "Python",
-      "stars": 62250,
-      "forks": 5650,
-      "stars_today": 769,
+      "stars": 63045,
+      "forks": 5733,
+      "stars_today": 699,
       "url": "https://github.com/HKUDS/CLI-Anything",
       "image": "https://raw.githubusercontent.com/HKUDS/CLI-Anything/HEAD/assets/demos/freecad-curiosity-preview-trajectory.gif",
       "readme_summary": {
@@ -71,9 +71,9 @@
       "description": "🧠 两小时从 0 训出你的 64M 大模型。Train your own 64M LLM from scratch in 2 hours.",
       "thai_description": "โปรเจกต์นี้คือ 此开源项目旨在完全从 0 开始，仅用 3 块钱成本与 2 小时训练时间，即可训练出规模约为 64M 的超小语言模型 MiniMind。 MiniMind 系列极其轻量，主线最小版本体积约为 GPT-3 的 $\\frac{1}{2700}$，力求让普通个人 GPU 也能快速完成训练与复现。 项目同时开源了大模型的极简结构与完整训练链路，覆盖 MoE、数据清洗、预训练（Pretrain）、监督微调（SFT）、LoRA、RLHF（DPO）、RLAIF（PPO / GRPO / CISPO）、Tool Use、Agentic RL、自适应思考与模型蒸馏等全过程代码。 MiniMind 同时拓展了视觉模态模型 MiniMind-V、多模态 Omni 模型 MiniMind-O、扩散语言模型（MiniM",
       "language": "Python",
-      "stars": 68279,
-      "forks": 8928,
-      "stars_today": 488,
+      "stars": 69037,
+      "forks": 9020,
+      "stars_today": 473,
       "url": "https://github.com/jingyaogong/minimind",
       "image": "https://raw.githubusercontent.com/jingyaogong/minimind/HEAD/images/minimind-3.gif",
       "readme_summary": {
@@ -84,7 +84,7 @@
         "how_to_use_formal_th": "Tokenizer 基于 BPE + ByteLevel 更新，并新增工具调用与思考标记，预留 buffer token 便于后续扩展 新增 LoRA 权重合并导出流程，可通过 scripts/convert_model.py 将基础模型与 LoRA 权重合并为新的完整模型权重 结构图资源更新，README 大面积更新 2025-10-24 🔥 新增RLAIF训练算法：PPO、GRPO、SPO（从0原生实现） 新增断点续训功能：支持训练自动恢复、跨GPU数量恢复、wandb记录连续性 新增RLAIF数据集：rlaif-mini.jsonl（从SFT数据随机采样1万条）；简化DPO数据集，加入中文数据",
         "installation_formal_th": "Ⅰ 🚀 模型推理 1' 下载模型 在项目根目录： 方式1 modelscope download --model gongjy/minimind-3 --local_dir ./minimind-3 方式2 โปรดดูคำสั่งติดตั้งโดยตรงจาก README ต้นฉบับของโครงการ"
       },
-      "readme_excerpt": "![GitHub Repo stars](https://github.com/jingyaogong/minimind/stargazers)\\n![GitHub Code License](LICENSE)\\n![GitHub last commit](https://github.com/jingyaogong/minimind/commits/master)\\n![GitHub pull request](https://github.com/jingyaogong/minimind/pulls)\\n![Collection](https://huggingface.co/collections/jingyaogong/minimind-66caf8d999f5c7fa64f399e5)\\n\"大道至简\"\\n中文 | English\\n此开源项目旨在完全从 0 开始，仅用 3 块钱成本与 2 小时训练时间，即可训练出规模约为 64M 的超小语言模型 MiniMind。\\nMiniMind 系列极其轻量，主线最小版本体积约为 GPT-3 的 $\\frac{1}{2700}$，力求让普通个人 GPU 也能快速完成训练与复现。\\n项目同时开源了大模型的极简结构与完整训练链路，覆盖 MoE、数据清洗、预训练（Pretrain）、监督微调（SFT）、LoRA、RLHF（DPO）、RLAIF（PPO / GRPO / CISPO）、Tool Use、Agentic RL、自适应思考与模型蒸馏等全过程代码。\\nMiniMind 同时拓展了视觉模态模型 MiniMind-V、多模态 Omni 模型 MiniMind-O、扩散语言模型（MiniMind-dLM）、线性模型（MiniMind-Linear），详见 Discussion。\\n项目所有核心算法代码均从 0 使用 PyTorch 原生实现，不依赖第三方库提供的高层抽象接口。\\n这不仅是一个大语言模型全阶段开源复现项目，也是一套面向 LLM 入门与实践的教程。\\n希望此项目能为更多人提供一个可复现、可理解、可扩展的起点，一起感受创造的乐趣，并推动更广泛 AI 社区的进步。\\n> 注：本项目基于 Apache 2.0 协议开源，完全免费。“2 小时” 指 SFT 阶段在单张 NVIDIA 3090 上跑完 1 epoch 的实测耗时，“3 块钱” 指对应时段的 GPU 租用成本。\\n--\\n🔗 在线体验 | 🔗 视频介绍\\n--\\n📌 项目介绍\\n大语言模型（Large Language Model, LLM）的出现，引发了全球范围内对 AI 的空前关注。无论是 ChatGPT、DeepSeek 还是 Qwen，都以惊艳的效果让人真切感受到这场技术浪潮的冲击力。然而，动辄数百亿参数的模型规模，使得它们对个人设备而言不仅难以训练，甚至连部署都显得遥不可及。打开大模型的“黑盒子”，真正去理解其内部运作机制，本应是一件令人心潮澎湃的事。遗憾的是，绝大多数探索最终都止步于使用 LoRA 等技术对现有大模型做少量微调，学习一些新指令或特定任务。这更像是在教牛顿如何使用 21 世纪的智能手机——虽然有趣，却偏离了理解物理本质的初衷。\\n与此同时，第三方的大模型框架与工具库，如 transformers / trl / peft 等，往往只暴露出高度抽象的接口。只需短短十几行代码，就可以完成“加载模型 + 加载数据集 + 推理 + 强化学习”的全流程训练。这种高效封装固然便利，却也在一定程度上把开发者与底层实现隔离开来，削弱了深入理解 LLM 核心代码的机会。我认为 “用乐高自己拼出一架飞机，远比坐在头等舱里飞行更让人兴奋”，然而更现实的问题是，互联网上充斥着大量付费课程和营销内容，用漏洞百出、一知半解的讲解包装所谓的 AI 教程。正因如此，本项目的初衷就是尽可能降低 LLM 的学习门槛，让每个人都能从理解每一行代码开始，从 0 开始亲手训练一个极小的语言模型。是的，从**零开始训练**，而不是仅仅停留在**推理**层面。最低只需不到 3 块钱的服务器成本，就能亲身体验从 0 到 1 构建一个语言模型的全过程。\\n😊 一起感受创造的乐趣吧！\\n--\\n🎉 本项目包含以下内容\\n提供完整的 MiniMind-LLM 结构代码（Dense + MoE），当前主线结构对齐 Qwen3 / Qwen3-MoE 生态。\\n提供 Tokenizer 与分词器训练代码，支持 、、 等模板标记。\\n覆盖 Pretrain、SFT、LoRA、RLHF-DPO、RLAIF（PPO / GRPO / CISPO）、Tool Use、Agentic RL、自适应思考与模型蒸馏等完整训练流程。\\n提供全阶段开源数据，覆盖收集、蒸馏、清洗与去重后的高质量数据集。\\n关键训练算法与核心模块均从 0 实现，不依赖第三方框架封装。\\n兼容 transformers、trl、peft 等主流框架，以及 llama.cpp、vllm、ollama 等常用推理引擎与 Llama-Factory 等训练框架。\\n支持单机单卡与单机多卡（DDP、DeepSpeed）训练，支持 wandb / swanlab 可视化与动态启停训练。\\n支持在 C-Eval、C-MMLU、OpenBookQA 等第三方测评集上进行评测，并支持通过 YaRN 实现 RoPE 长文本外推。\\n提供兼容 OpenAI API 协议的极简服务端，便于接入 FastGPT、Open-WebUI 等第三方 Chat UI，并支持 reasoning_content、tool_calls、open_thinking。\\n提供基于 Streamlit 的极简聊天 WebUI，支持思考展示、工具选择与多轮 Tool Call。\\n包含实验性拓展：离散扩散语言模型（dLM）与线性注意力模型（Linear Attention），均可基于主线 AR 模型进行续训。\\n🎉 已发布模型列表\\n| 模型 | 参数量 | Release |\\n|------|--------|---------|\\n| minimind-3 | 64M | 2026.04.01 |\\n| minimind-3-moe | 198M-A64M | 2026.04.01 |\\n| minimind2-small | 26M | 2025.04.26 |\\n| minimind2-moe | 145M | 2025.04.26 |\\n| minimind2 | 104M | 2025.04.26 |\\n| minimind-v1-small | 26M | 2024.08.28 |\\n| minimind-v1-moe | 4×26M | 2024.09.17 |\\n| minimind-v1 | 108M | 2024.09.01 |\\n--\\n📝 更新日志\\n🔥 2026-04-01\\n发布 minimind-3 / minimind-3-moe：结构、Tokenizer、训练链路、推理接口与默认配置全面更新\\n结构主线对齐 Qwen3 / Qwen3-MoE 生态：Dense 约 64M，MoE 约 198M-A64M，并移除了 shared expert 设计\\n默认训练数据切换为 pretrain_t2t(_mini).jsonl、sft_t2t(_mini).jsonl、rlaif.jsonl、agent_rl.jsonl 与 agent_rl_math.jsonl\\n移除独立 train_reason.py；思考能力统一由 chat_template + 与 open_thinking 自适应开关控制\\ntoolcall 能力已混入 sft_t2t / sft_t2t_mini 主线数据，默认 full_sft 即具备基础 Tool Call 能力；同时新增 scripts/chat_api.py 等推理示例\\n新增原生 Agentic RL 训练脚本 train_agent.py，支持多轮 Tool-Use 场景下的 GRPO / CISPO\\nRLAIF / Agentic RL 训练流程完成 rollout engine 解耦，支持更灵活地切换生成后端\\nserve_openai_api.py 与 web_demo.py 新增 reasoning_content / tool_calls / open_thinking 支持\\nTokenizer 基于 BPE + ByteLevel 更新，并新增工具调用与思考标记，预留 buffer token 便于后续扩展\\n新增 LoRA 权重合并导出流程，可通过 scripts/convert_model.py 将基础模型与 LoRA 权重合并为新的完整模型权重\\n结构图资源更新，README 大面积更新\\n2025-10-24\\n🔥 新增RLAIF训练算法：PPO、GRPO、SPO（从0原生实现）\\n新增断点续训功能：支持训练自动恢复、跨GPU数量恢复、wandb记录连续性\\n新增RLAIF数据集：rlaif-mini.jsonl（从SFT数据随机采样1万条）；简化DPO数据集，加入中文数据\\n新增YaRN算法：支持RoPE长文本外推，提升长序列处理能力\\nAdaptive Thinking：Reason模型可选是否启用思考链\\nchat_template全面支持Tool Calling和Reasoning标签（、等）\\n新增RLAIF完整章节、训练曲线对比、算法原理折叠说明\\nSwanLab替代WandB（国内访问友好，API完全兼容）\\n规范化所有代码 & 修复一些已知bugs\\n2025-04-26\\n重要更新\\n如有兼容性需要，可访问🔗旧仓库内容🔗。\\nMiniMind模型参数完全改名，对齐Transformers库模型（统一命名）。\\ngenerate方式重构，继承自GenerationMixin类。\\n🔥支持llama.cpp、vllm、ollama等热门三方生态。\\n规范代码和目录结构。\\n改动词表->\\n为兼容第三方推理框架llama.cpp、vllm，本次更新需付出一些可观代价。\\n本次更新不再支持「直接」加载25-04-26以前的旧模型进行推理。"
+      "readme_excerpt": "![GitHub Repo stars](https://github.com/jingyaogong/minimind/stargazers)\\n![GitHub Code License](LICENSE)\\n![GitHub last commit](https://github.com/jingyaogong/minimind/commits/master)\\n![GitHub pull request](https://github.com/jingyaogong/minimind/pulls)\\n![Collection](https://huggingface.co/collections/jingyaogong/minimind-66caf8d999f5c7fa64f399e5)\\n\"大道至简\"\\n中文 | English\\n此开源项目旨在完全从 0 开始，仅用 3 块钱成本与 2 小时训练时间，即可训练出规模约为 64M 的超小语言模型 MiniMind。\\nMiniMind 系列极其轻量，主线最小版本体积约为 GPT-3 的 $\\frac{1}{2700}$，力求让普通个人 GPU 也能快速完成训练与复现。\\n项目同时开源了大模型的极简结构与完整训练链路，覆盖 MoE、数据清洗、预训练（Pretrain）、监督微调（SFT）、LoRA、RLHF（DPO）、RLAIF（PPO / GRPO / CISPO）、Tool Use、Agentic RL、自适应思考与模型蒸馏等全过程代码。\\nMiniMind 同时拓展了视觉模态模型 MiniMind-V、多模态 Omni 模型 MiniMind-O、扩散语言模型（MiniMind-dLM）、线性模型（MiniMind-Linear），详见 Discussion。\\n项目所有核心算法代码均从 0 使用 PyTorch 原生实现，不依赖第三方库提供的高层抽象接口。\\n这不仅是一个大语言模型全阶段开源复现项目，也是一套面向 LLM 入门与实践的教程。\\n希望此项目能为更多人提供一个可复现、可理解、可扩展的起点，一起感受创造的乐趣，并推动更广泛 AI 社区的进步。\\n> 注：本项目基于 Apache 2.0 协议开源，完全免费。“2 小时” 指 SFT 阶段在单张 NVIDIA 3090 上跑完 1 epoch 的实测耗时，“3 块钱” 指对应时段的 GPU 租用成本。\\n--\\n🔗 在线体验 | 🔗 视频介绍\\n--\\n❤️ 赞助\\nMiniMind × Infistar.cc：Claude、GPT、Gemini、DeepSeek等200+模型一个Key搞定，低至官方0.1折（省99%），100%官方纯血可验真，千条线路自动切换。通过专属链接注册即送¥5。\\n关于赞助与合作\\nMiniMind 以 Apache 2.0 协议完全开源、永久免费。赞助完全自愿，不换取任何特权，也不影响项目使用。感谢每一位支持者，让这个业余时间维护的项目得以持续。\\n赞助方式包括按月占位，或直接赞助 GPU 服务器（算力可能用于项目相关或不相关的研究性探索）。\\n如有意向，欢迎通过 邮件 联系。\\n--\\n📌 项目介绍\\n大语言模型（Large Language Model, LLM）的出现，引发了全球范围内对 AI 的空前关注。无论是 ChatGPT、DeepSeek 还是 Qwen，都以惊艳的效果让人真切感受到这场技术浪潮的冲击力。然而，动辄数百亿参数的模型规模，使得它们对个人设备而言不仅难以训练，甚至连部署都显得遥不可及。打开大模型的“黑盒子”，真正去理解其内部运作机制，本应是一件令人心潮澎湃的事。遗憾的是，绝大多数探索最终都止步于使用 LoRA 等技术对现有大模型做少量微调，学习一些新指令或特定任务。这更像是在教牛顿如何使用 21 世纪的智能手机——虽然有趣，却偏离了理解物理本质的初衷。\\n与此同时，第三方的大模型框架与工具库，如 transformers / trl / peft 等，往往只暴露出高度抽象的接口。只需短短十几行代码，就可以完成“加载模型 + 加载数据集 + 推理 + 强化学习”的全流程训练。这种高效封装固然便利，却也在一定程度上把开发者与底层实现隔离开来，削弱了深入理解 LLM 核心代码的机会。我认为 “用乐高自己拼出一架飞机，远比坐在头等舱里飞行更让人兴奋”，然而更现实的问题是，互联网上充斥着大量付费课程和营销内容，用漏洞百出、一知半解的讲解包装所谓的 AI 教程。正因如此，本项目的初衷就是尽可能降低 LLM 的学习门槛，让每个人都能从理解每一行代码开始，从 0 开始亲手训练一个极小的语言模型。是的，从**零开始训练**，而不是仅仅停留在**推理**层面。最低只需不到 3 块钱的服务器成本，就能亲身体验从 0 到 1 构建一个语言模型的全过程。\\n😊 一起感受创造的乐趣吧！\\n--\\n🎉 本项目包含以下内容\\n提供完整的 MiniMind-LLM 结构代码（Dense + MoE），当前主线结构对齐 Qwen3 / Qwen3-MoE 生态。\\n提供 Tokenizer 与分词器训练代码，支持 、、 等模板标记。\\n覆盖 Pretrain、SFT、LoRA、RLHF-DPO、RLAIF（PPO / GRPO / CISPO）、Tool Use、Agentic RL、自适应思考与模型蒸馏等完整训练流程。\\n提供全阶段开源数据，覆盖收集、蒸馏、清洗与去重后的高质量数据集。\\n关键训练算法与核心模块均从 0 实现，不依赖第三方框架封装。\\n兼容 transformers、trl、peft 等主流框架，以及 llama.cpp、vllm、ollama 等常用推理引擎与 Llama-Factory 等训练框架。\\n支持单机单卡与单机多卡（DDP、DeepSpeed）训练，支持 wandb / swanlab 可视化与动态启停训练。\\n支持在 C-Eval、C-MMLU、OpenBookQA 等第三方测评集上进行评测，并支持通过 YaRN 实现 RoPE 长文本外推。\\n提供兼容 OpenAI API 协议的极简服务端，便于接入 FastGPT、Open-WebUI 等第三方 Chat UI，并支持 reasoning_content、tool_calls、open_thinking。\\n提供基于 Streamlit 的极简聊天 WebUI，支持思考展示、工具选择与多轮 Tool Call。\\n包含实验性拓展：离散扩散语言模型（dLM）与线性注意力模型（Linear Attention），均可基于主线 AR 模型进行续训。\\n🎉 已发布模型列表\\n| 模型 | 参数量 | Release |\\n|------|--------|---------|\\n| minimind-3 | 64M | 2026.04.01 |\\n| minimind-3-moe | 198M-A64M | 2026.04.01 |\\n| minimind2-small | 26M | 2025.04.26 |\\n| minimind2-moe | 145M | 2025.04.26 |\\n| minimind2 | 104M | 2025.04.26 |\\n| minimind-v1-small | 26M | 2024.08.28 |\\n| minimind-v1-moe | 4×26M | 2024.09.17 |\\n| minimind-v1 | 108M | 2024.09.01 |\\n--\\n📝 更新日志\\n🔥 2026-04-01\\n发布 minimind-3 / minimind-3-moe：结构、Tokenizer、训练链路、推理接口与默认配置全面更新\\n结构主线对齐 Qwen3 / Qwen3-MoE 生态：Dense 约 64M，MoE 约 198M-A64M，并移除了 shared expert 设计\\n默认训练数据切换为 pretrain_t2t(_mini).jsonl、sft_t2t(_mini).jsonl、rlaif.jsonl、agent_rl.jsonl 与 agent_rl_math.jsonl\\n移除独立 train_reason.py；思考能力统一由 chat_template + 与 open_thinking 自适应开关控制\\ntoolcall 能力已混入 sft_t2t / sft_t2t_mini 主线数据，默认 full_sft 即具备基础 Tool Call 能力；同时新增 scripts/chat_api.py 等推理示例\\n新增原生 Agentic RL 训练脚本 train_agent.py，支持多轮 Tool-Use 场景下的 GRPO / CISPO\\nRLAIF / Agentic RL 训练流程完成 rollout engine 解耦，支持更灵活地切换生成后端\\nserve_openai_api.py 与 web_demo.py 新增 reasoning_content / tool_calls / open_thinking 支持\\nTokenizer 基于 BPE + ByteLevel 更新，并新增工具调用与思考标记，预留 buffer token 便于后续扩展\\n新增 LoRA 权重合并导出流程，可通过 scripts/convert_model.py 将基础模型与 LoRA 权重合并为新的完整模型权重\\n结构图资源更新，README 大面积更新\\n2025-10-24\\n🔥 新增RLAIF训练算法：PPO、GRPO、SPO（从0原生实现）\\n新增断点续训功能：支持训练自动恢复、跨GPU数量恢复、wandb记录连续性\\n新增RLAIF数据集：rlaif-mini.jsonl（从SFT数据随机采样1万条）；简化DPO数据集，加入中文数据\\n新增YaRN算法：支持RoPE长文本外推，提升长序列处理能力\\nAdaptive Thinking：Reason模型可选是否启用思考链\\nchat_template全面支持Tool Calling和Reasoning标签（、等）\\n新增RLAIF完整章节、训练曲线对比、算法原理折叠说明\\nSwanLab替代WandB（国内访问友好，API完全兼容）\\n规范化所有代码 & 修复一些已知bugs\\n2025-04-26\\n重要更新\\n如有兼容性需要，可访问🔗旧仓库内容🔗。"
     },
     {
       "rank": 5,
@@ -92,9 +92,9 @@
       "description": "Cursor plugin specification and official plugins",
       "thai_description": "โปรเจกต์นี้คือ Official Cursor plugins for popular developer tools, frameworks, and SaaS products. Each plugin is a standalone directory at the repository root with its own .cursor-plugin/plugin.json manifest.",
       "language": "TypeScript",
-      "stars": 18184,
-      "forks": 1986,
-      "stars_today": 260,
+      "stars": 18584,
+      "forks": 2024,
+      "stars_today": 294,
       "url": "https://github.com/cursor/plugins",
       "image": "https://opengraph.githubassets.com/1/cursor/plugins",
       "readme_summary": {
@@ -113,9 +113,9 @@
       "description": "Knowledge infrastructure to make your agents smarter. Search, scrape and access 550+ data providers through one API.",
       "thai_description": "เครื่องมือจัดการฐานข้อมูลและ SQL workspace ที่มี AI assistant ช่วยเขียน SQL จากภาษาธรรมดา อธิบาย query และ optimize",
       "language": "TypeScript",
-      "stars": 206413,
-      "forks": 10792,
-      "stars_today": 1006,
+      "stars": 207310,
+      "forks": 10836,
+      "stars_today": 915,
       "url": "https://github.com/firecrawl/firecrawl",
       "image": "https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/open-source-cloud.png",
       "readme_summary": {
@@ -134,9 +134,9 @@
       "description": "The official NGINX Open Source repository.",
       "thai_description": "โปรเจกต์นี้คือ NGINX (pronounced \"engine x\" or \"en-jin-eks\") is the world's most popular Web Server, high performance Load Balancer, Reverse Proxy, API Gateway and Content Cache. NGINX is free and open source software, distributed under the terms of a simplified 2-clause BSD-like license. Enterprise distributions, commercial support and training are available fro",
       "language": "C",
-      "stars": 32779,
-      "forks": 8375,
-      "stars_today": 189,
+      "stars": 32938,
+      "forks": 8393,
+      "stars_today": 163,
       "url": "https://github.com/nginx/nginx",
       "image": "https://opengraph.githubassets.com/1/nginx/nginx",
       "readme_summary": {
@@ -155,9 +155,9 @@
       "description": "OpenVINO™ is an open source toolkit for optimizing and deploying AI inference",
       "thai_description": "โปรเจกต์นี้คือ Open-source software toolkit for optimizing and deploying deep learning models. - Inference Optimization: Boost deep learning performance in computer vision, automatic speech recognition, generative AI, natural language processing with large and small language models, and many other common tasks. - Flexible Model Support: Use models trained with po",
       "language": "C++",
-      "stars": 11980,
-      "forks": 3654,
-      "stars_today": 200,
+      "stars": 12163,
+      "forks": 3669,
+      "stars_today": 158,
       "url": "https://github.com/openvinotoolkit/openvino",
       "image": "https://opengraph.githubassets.com/1/openvinotoolkit/openvino",
       "readme_summary": {
@@ -173,12 +173,12 @@
     {
       "rank": 9,
       "name": "cathrynlavery/diagram-design",
-      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 45 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
+      "description": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 52 diagram types. Self-contained HTML + SVG. No shadows. No Mermaid slop.",
       "thai_description": "เครื่องมือจัดการฐานข้อมูลและ SQL workspace ที่มี AI assistant ช่วยเขียน SQL จากภาษาธรรมดา อธิบาย query และ optimize",
       "language": "HTML",
-      "stars": 69931,
-      "forks": 4691,
-      "stars_today": 583,
+      "stars": 70527,
+      "forks": 4733,
+      "stars_today": 518,
       "url": "https://github.com/cathrynlavery/diagram-design",
       "image": "https://raw.githubusercontent.com/cathrynlavery/diagram-design/HEAD/docs/hero/demo.gif",
       "readme_summary": {
@@ -189,7 +189,7 @@
         "how_to_use_formal_th": "├── docs/screenshots/ # full-resolution images + source-digest manifest.json ├── docs/screenshots/thumbs/ # generated WebP previews the README renders ├── CHANGELOG.md # release history └── CONTRIBUTING.md # validation gates and how each one works This keeps the agent's working context tight: routine diagrams load one type reference; behavior-rich diagrams add the routed semantic reference; animation adds its contract only when selected.",
         "installation_formal_th": "![CI](https://github.com/cathrynlavery/diagram-design/actions/workflows/ci.yml) ![Plugin version](CHANGELOG.md) ![MIT license](LICENSE) *Website · Gallery · Changelog** Install · What it makes · Quickstart · Match your brand · Import · Export · Contributing โปรดดูคำสั่งติดตั้งโดยตรงจาก README ต้นฉบับของโครงการ"
       },
-      "readme_excerpt": "*An agent skill that draws diagrams as one self-contained HTML + SVG file, in your brand.51 diagram types. No shadows. No Mermaid slop.**\\n![GitHub stars](https://github.com/cathrynlavery/diagram-design/stargazers)\\n![skills.sh installs](https://skills.sh/cathrynlavery/diagram-design/diagram-design)\\n![CI](https://github.com/cathrynlavery/diagram-design/actions/workflows/ci.yml)\\n![Plugin version](CHANGELOG.md)\\n![MIT license](LICENSE)\\n*Website · Gallery · Changelog**\\nInstall · What it makes · Quickstart · Match your brand · Import · Export · Contributing\\nnpx skills add cathrynlavery/diagram-design\\nAsk your agent in plain words:\\n*\"Make me an architecture diagram of my app: frontend, backend, database, Redis cache.\"*\\n*\"I need a quadrant showing Q2 projects by impact vs effort.\"*\\n*\"Give me a sequence of a bearer call with token refresh on 401.\"*\\n*\"Onboard diagram-design to https://yoursite.com\"* (pulls your palette and fonts so every diagram after this one matches your site)\\nThe agent picks the type, states its plan, and writes one .html file you can open by double-clicking.\\n--\\nInstall\\nWorks with any host that reads Agent Skills, including Cursor, Claude Code, Codex, Qoder, GitHub Copilot, Gemini CLI, Cline, Windsurf and Amp:\\nnpx skills add cathrynlavery/diagram-design\\nIn Claude Code, the plugin marketplace gets you updates and the slash commands:\\n/plugin marketplace add cathrynlavery/diagram-design\\n/plugin install diagram-design@diagram-design\\nOfficial builds come only from this repository. LittleMight, Cathryn Lavery's company, publishes the plugin directory listings; a listing under any other name is an unofficial copy. PRIVACY.md lists what the skill sends over the network.\\nClaude Code: turn on auto-update\\nAfter installing, run /plugin, open **Marketplaces**, select **diagram-design**, and choose **Enable auto-update**. Claude Code disables auto-update by default for third-party marketplaces; after this toggle, it refreshes the marketplace and installed plugin in the background after startup. Run /reload-plugins when prompted, or let the next session load the update.\\nCursor, Cline, Gemini CLI, Windsurf, Amp, Zed, Warp, Roo, Kilo and other Agent Skills hosts\\nThe cross-agent skills CLI resolves this repository, detects skills/diagram-design/SKILL.md, and installs the whole skill (references/, assets/, scripts/) into every host root you select, including Cursor's:\\nnpx skills add cathrynlavery/diagram-design\\nWhen the selected roots resolve to more than one skills directory, the CLI asks for an installation method and recommends **Symlink**: one canonical copy, linked into each root, so a later update reaches all of them at once. Pass --copy for independent copies per host instead. A selection that resolves to a single directory is copied, because the distinction is immaterial there. Where symlinks are unavailable (Windows without Developer Mode) the CLI falls back to copies and reports which roots it copied.\\nThis is a standalone install, separate from the marketplaces below: it does not follow marketplace updates automatically. Pull merged updates with npx skills update diagram-design. It also installs the Agent Skill only, so the /export-diagram, /import-mermaid, /import-plantuml, /profile, and /doctor command surfaces stay with the native packages. On a host that has one of the marketplaces below, prefer the marketplace.\\n> **One-time migration:** an existing standalone npx skills add copy will not start following the Codex marketplace automatically. Remove that standalone copy, then use the Codex marketplace commands. Likewise, uninstall a personal Cowork copy and reinstall Diagram Design from your organization's marketplace. Future marketplace version bumps then flow through each client's native update path.\\nCodex\\ncodex plugin marketplace add cathrynlavery/diagram-design\\ncodex plugin add diagram-design@diagram-design\\nCodex refreshes configured Git marketplaces at startup. To fetch immediately, run codex plugin marketplace upgrade diagram-design and start a new session.\\nQoder\\nClone the repository, validate the native plugin, and install it locally:\\ngit clone https://github.com/cathrynlavery/diagram-design.git\\nqoder plugins validate ./diagram-design\\nqoder plugins install ./diagram-design\\nqoder plugins list\\nQoder loads the canonical skills/diagram-design/ tree and the shared command\\ndefinitions directly; no Qoder-specific copy is maintained. For Qoder IDE,\\nbuild a bounded ZIP from the tracked plugin surfaces and import it through\\n*Extensions → Plugins → Add Plugins → Upload Plugin**:\\ngit -C diagram-design archive --format=zip \\\\n-output=../diagram-design-qoder.zip HEAD \\\\n.qoder-plugin commands skills LICENSE\\nStart a new task after installing or updating the plugin.\\nGitHub Copilot\\ncopilot plugin marketplace add cathrynlavery/diagram-design\\ncopilot plugin install diagram-design@diagram-design\\nCopilot installs the shared Diagram Design skill plus its doctor, export, import, and profile capabilities from the existing repository marketplace. Confirm discovery with copilot skill list (or /skills in an interactive session), then ask for a diagram in natural language. To fetch a merged update, run copilot plugin marketplace update diagram-design, then copilot plugin update diagram-design@diagram-design.\\nFactory Droid\\ndroid plugin marketplace add https://github.com/cathrynlavery/diagram-design\\ndroid plugin install diagram-design@diagram-design --scope user\\nDroid tracks Git plugins by commit rather than the manifest's display version. To fetch a merged update, run droid plugin marketplace update diagram-design, then droid plugin update diagram-design@diagram-design --scope user, and start a new session.\\nClaude Cowork (organization marketplace)\\nOrganization GitHub marketplaces currently require a private or internal repository, so first mirror this public repository into one owned by your organization. In **Organization settings → Plugins**, choose **Add plugin → GitHub**, connect that mirror, and enable **Sync automatically** from the marketplace menu. Automatic sync runs when a pull request containing a plugin version bump is merged to the mirror's default branch; direct pushes do not trigger the webhook. Install Diagram Design from the resulting organization marketplace.\\nPi\\npi install https://github.com/cathrynlavery/diagram-design\\nRun /reload in an open Pi session. Pi makes the skill available for matching diagram requests; use /skill:diagram-design to invoke it explicitly. Pi also loads the /export-diagram, /import-mermaid, /import-excalidraw, /import-plantuml, /profile, and /doctor prompt templates. The unpinned Git install is intentional: Pi has no automatic package refresh, so run pi update --extensions to pull merged updates.\\nKiro\\nImport the Agent Skill from the repository subdirectory URL:\\nhttps://github.com/cathrynlavery/diagram-design/tree/main/skills/diagram-design\\nKiro copies imported skills into .kiro/skills/ for a workspace or ~/.kiro/skills/ globally, so re-import the URL to pick up updates. Custom agents that declare resources should include skill://diagram-design/**/SKILL.md.\\nOpenCode\\nCopy or symlink skills/diagram-design/ to .opencode/skills/diagram-design in a project or ~/.config/opencode/skills/diagram-design globally. OpenCode has no Diagram Design marketplace package; copied installs update only when you replace the directory from a newer checkout.\\nEditable install (customize the style guide in a clone)\\nManaged installs are convenient, but changes to references/style-guide.md may be replaced by package updates. Saved profiles in ~/.diagram-design/profiles/ survive updates, and projects with a .diagram-design marker are unaffected. Clone the repo and install the local path if you plan to customize the working style guide directly:\\ngit clone git@github.com:cathrynlavery/diagram-design.git ~/code/diagram-design\\nPi: register the checkout as a local package\\npi install ~/code/diagram-design\\nClaude Code: symlink the inner skill\\nln -s ~/code/diagram-design/skills/diagram-design ~/.claude/skills/diagram-design\\nOther Agent Skills hosts: create only the roots you use\\nmkdir -p ~/.agents/skills ~/.cursor/skills ~/.cline/skills ~/.kiro/skills ~/.config/opencode/skills ~/.copilot/skills\\nln -s ~/code/diagram-design/skills/diagram-design ~/.agents/skills/diagram-design\\nln -s ~/code/diagram-design/skills/diagram-design ~/.cursor/skills/diagram-design\\nln -s ~/code/diagram-design/skills/diagram-design ~/.cline/skills/diagram-design"
+      "readme_excerpt": "*An agent skill that draws diagrams as one self-contained HTML + SVG file, in your brand.52 diagram types. No shadows. No Mermaid slop.**\\n![GitHub stars](https://github.com/cathrynlavery/diagram-design/stargazers)\\n![skills.sh installs](https://skills.sh/cathrynlavery/diagram-design/diagram-design)\\n![CI](https://github.com/cathrynlavery/diagram-design/actions/workflows/ci.yml)\\n![Plugin version](CHANGELOG.md)\\n![MIT license](LICENSE)\\n*Website · Gallery · Changelog**\\nInstall · What it makes · Quickstart · Match your brand · Import · Export · Contributing\\nnpx skills add cathrynlavery/diagram-design\\nAsk your agent in plain words:\\n*\"Make me an architecture diagram of my app: frontend, backend, database, Redis cache.\"*\\n*\"I need a quadrant showing Q2 projects by impact vs effort.\"*\\n*\"Give me a sequence of a bearer call with token refresh on 401.\"*\\n*\"Onboard diagram-design to https://yoursite.com\"* (pulls your palette and fonts so every diagram after this one matches your site)\\nThe agent picks the type, states its plan, and writes one .html file you can open by double-clicking.\\n--\\nInstall\\nWorks with any host that reads Agent Skills, including Cursor, Claude Code, Codex, Qoder, GitHub Copilot, Gemini CLI, Cline, Windsurf and Amp:\\nnpx skills add cathrynlavery/diagram-design\\nIn Claude Code, the plugin marketplace gets you updates and the slash commands:\\n/plugin marketplace add cathrynlavery/diagram-design\\n/plugin install diagram-design@diagram-design\\nOfficial builds come only from this repository. LittleMight, Cathryn Lavery's company, publishes the plugin directory listings; a listing under any other name is an unofficial copy. PRIVACY.md lists what the skill sends over the network.\\nClaude Code: turn on auto-update\\nAfter installing, run /plugin, open **Marketplaces**, select **diagram-design**, and choose **Enable auto-update**. Claude Code disables auto-update by default for third-party marketplaces; after this toggle, it refreshes the marketplace and installed plugin in the background after startup. Run /reload-plugins when prompted, or let the next session load the update.\\nCursor, Cline, Gemini CLI, Windsurf, Amp, Zed, Warp, Roo, Kilo and other Agent Skills hosts\\nThe cross-agent skills CLI resolves this repository, detects skills/diagram-design/SKILL.md, and installs the whole skill (references/, assets/, scripts/) into every host root you select, including Cursor's:\\nnpx skills add cathrynlavery/diagram-design\\nWhen the selected roots resolve to more than one skills directory, the CLI asks for an installation method and recommends **Symlink**: one canonical copy, linked into each root, so a later update reaches all of them at once. Pass --copy for independent copies per host instead. A selection that resolves to a single directory is copied, because the distinction is immaterial there. Where symlinks are unavailable (Windows without Developer Mode) the CLI falls back to copies and reports which roots it copied.\\nThis is a standalone install, separate from the marketplaces below: it does not follow marketplace updates automatically. Pull merged updates with npx skills update diagram-design. It also installs the Agent Skill only, so the /export-diagram, /import-mermaid, /import-plantuml, /profile, and /doctor command surfaces stay with the native packages. On a host that has one of the marketplaces below, prefer the marketplace.\\n> **One-time migration:** an existing standalone npx skills add copy will not start following the Codex marketplace automatically. Remove that standalone copy, then use the Codex marketplace commands. Likewise, uninstall a personal Cowork copy and reinstall Diagram Design from your organization's marketplace. Future marketplace version bumps then flow through each client's native update path.\\nCodex\\ncodex plugin marketplace add cathrynlavery/diagram-design\\ncodex plugin add diagram-design@diagram-design\\nCodex refreshes configured Git marketplaces at startup. To fetch immediately, run codex plugin marketplace upgrade diagram-design and start a new session.\\nQoder\\nClone the repository, validate the native plugin, and install it locally:\\ngit clone https://github.com/cathrynlavery/diagram-design.git\\nqoder plugins validate ./diagram-design\\nqoder plugins install ./diagram-design\\nqoder plugins list\\nQoder loads the canonical skills/diagram-design/ tree and the shared command\\ndefinitions directly; no Qoder-specific copy is maintained. For Qoder IDE,\\nbuild a bounded ZIP from the tracked plugin surfaces and import it through\\n*Extensions → Plugins → Add Plugins → Upload Plugin**:\\ngit -C diagram-design archive --format=zip \\\\n-output=../diagram-design-qoder.zip HEAD \\\\n.qoder-plugin commands skills LICENSE\\nStart a new task after installing or updating the plugin.\\nGitHub Copilot\\ncopilot plugin marketplace add cathrynlavery/diagram-design\\ncopilot plugin install diagram-design@diagram-design\\nCopilot installs the shared Diagram Design skill plus its doctor, export, import, and profile capabilities from the existing repository marketplace. Confirm discovery with copilot skill list (or /skills in an interactive session), then ask for a diagram in natural language. To fetch a merged update, run copilot plugin marketplace update diagram-design, then copilot plugin update diagram-design@diagram-design.\\nFactory Droid\\ndroid plugin marketplace add https://github.com/cathrynlavery/diagram-design\\ndroid plugin install diagram-design@diagram-design --scope user\\nDroid tracks Git plugins by commit rather than the manifest's display version. To fetch a merged update, run droid plugin marketplace update diagram-design, then droid plugin update diagram-design@diagram-design --scope user, and start a new session.\\nClaude Cowork (organization marketplace)\\nOrganization GitHub marketplaces currently require a private or internal repository, so first mirror this public repository into one owned by your organization. In **Organization settings → Plugins**, choose **Add plugin → GitHub**, connect that mirror, and enable **Sync automatically** from the marketplace menu. Automatic sync runs when a pull request containing a plugin version bump is merged to the mirror's default branch; direct pushes do not trigger the webhook. Install Diagram Design from the resulting organization marketplace.\\nPi\\npi install https://github.com/cathrynlavery/diagram-design\\nRun /reload in an open Pi session. Pi makes the skill available for matching diagram requests; use /skill:diagram-design to invoke it explicitly. Pi also loads the /export-diagram, /import-mermaid, /import-excalidraw, /import-plantuml, /profile, and /doctor prompt templates. The unpinned Git install is intentional: Pi has no automatic package refresh, so run pi update --extensions to pull merged updates.\\nKiro\\nImport the Agent Skill from the repository subdirectory URL:\\nhttps://github.com/cathrynlavery/diagram-design/tree/main/skills/diagram-design\\nKiro copies imported skills into .kiro/skills/ for a workspace or ~/.kiro/skills/ globally, so re-import the URL to pick up updates. Custom agents that declare resources should include skill://diagram-design/**/SKILL.md.\\nOpenCode\\nCopy or symlink skills/diagram-design/ to .opencode/skills/diagram-design in a project or ~/.config/opencode/skills/diagram-design globally. OpenCode has no Diagram Design marketplace package; copied installs update only when you replace the directory from a newer checkout.\\nEditable install (customize the style guide in a clone)\\nManaged installs are convenient, but changes to references/style-guide.md may be replaced by package updates. Saved profiles in ~/.diagram-design/profiles/ survive updates, and projects with a .diagram-design marker are unaffected. Clone the repo and install the local path if you plan to customize the working style guide directly:\\ngit clone git@github.com:cathrynlavery/diagram-design.git ~/code/diagram-design\\nPi: register the checkout as a local package\\npi install ~/code/diagram-design\\nClaude Code: symlink the inner skill\\nln -s ~/code/diagram-design/skills/diagram-design ~/.claude/skills/diagram-design\\nOther Agent Skills hosts: create only the roots you use\\nmkdir -p ~/.agents/skills ~/.cursor/skills ~/.cline/skills ~/.kiro/skills ~/.config/opencode/skills ~/.copilot/skills\\nln -s ~/code/diagram-design/skills/diagram-design ~/.agents/skills/diagram-design\\nln -s ~/code/diagram-design/skills/diagram-design ~/.cursor/skills/diagram-design\\nln -s ~/code/diagram-design/skills/diagram-design ~/.cline/skills/diagram-design"
     },
     {
       "rank": 10,
@@ -197,9 +197,9 @@
       "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
       "thai_description": "โปรเจกต์นี้คือ English | Français | Deutsch | Español | Português (Brasil) | 日本語 | 简体中文 | العربية | فارسی | Türkçe An AI agent-led search engine scored by upvotes, likes, and real money - not editors. This README tracks the current v4 pipeline. The runtime skill spec lives in skills/last30days/SKILL.md, which is the source of truth for the latest command and setu",
       "language": "Python",
-      "stars": 72189,
-      "forks": 6391,
-      "stars_today": 560,
+      "stars": 72993,
+      "forks": 6452,
+      "stars_today": 668,
       "url": "https://github.com/mvanhorn/last30days-skill",
       "image": "https://raw.githubusercontent.com/mvanhorn/last30days-skill/HEAD/media/pr-assets/last30days-ad.gif",
       "readme_summary": {
@@ -218,9 +218,9 @@
       "description": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor.",
       "thai_description": "โปรเจกต์นี้คือ collection of agent skills and plugins for Google Stitch, following the Agent Skills open standard. Compatible with coding agents such as Codex, Antigravity, Gemini CLI, Claude Code, Cursor, and OpenCode (manual install). The fastest way to set up the full Stitch plugin suite globally. Add the Stitch Skills marketplace, then install the plugins y",
       "language": "TypeScript",
-      "stars": 11588,
-      "forks": 1451,
-      "stars_today": 326,
+      "stars": 12052,
+      "forks": 1493,
+      "stars_today": 494,
       "url": "https://github.com/google-labs-code/stitch-skills",
       "image": "https://opengraph.githubassets.com/1/google-labs-code/stitch-skills",
       "readme_summary": {
@@ -236,12 +236,12 @@
     {
       "rank": 12,
       "name": "mjmirza/app-store-compliance",
-      "description": "Avoid common App Store and Google Play rejections. Open playbook and pre-submission guard with 124 documented rejection patterns and fixes, privacy manifest and Data safety checks, 111 tracked deadlines (EU AI Act, DSA, COPPA, age laws), and a skill for AI coding agents.",
+      "description": "Avoid common App Store and Google Play rejections. Open playbook and pre-submission guard with 124 documented rejection patterns and fixes, privacy manifest and Data safety checks, 112 tracked deadlines (EU AI Act, DSA, COPPA, age laws), and a skill for AI coding agents.",
       "thai_description": "โปรเจกต์นี้คือ Catch App Store and Google Play rejection causes before the reviewer does. A reference and a pre-submission guard for iOS and Android apps that is plain about what a scan can prove and what still needs a person. It does not guarantee approval. Read it as a website at mjmirza.github.io/app-store-compliance. If this saves you even one rejection, leav",
       "language": "Shell",
-      "stars": 3553,
-      "forks": 219,
-      "stars_today": 720,
+      "stars": 4271,
+      "forks": 273,
+      "stars_today": 621,
       "url": "https://github.com/mjmirza/app-store-compliance",
       "image": "https://raw.githubusercontent.com/mjmirza/app-store-compliance/HEAD/assets/apple.png",
       "readme_summary": {
@@ -260,9 +260,9 @@
       "description": "The open-source agent for CI/CD reliability.",
       "thai_description": "โปรเจกต์นี้คือ OpenSRE: The open-source agent for CI/CD reliability Your CI tells you it broke, but not why or how to fix it. OpenSRE is a CLI agent that reads the failed run, traces the cause and pushes a fix for you to review. Self-hosted, with your own models. alt=\"Tracer-Cloud%2Fopensre | Trendshift\"",
       "language": "Python",
-      "stars": 14092,
-      "forks": 1946,
-      "stars_today": 450,
+      "stars": 14550,
+      "forks": 1978,
+      "stars_today": 399,
       "url": "https://github.com/Tracer-Cloud/opensre",
       "image": "https://github.com/user-attachments/assets/936ab1f2-9bda-438d-9897-e8e9cd98e335",
       "readme_summary": {
@@ -281,9 +281,9 @@
       "description": "There can be more than Notion and Miro. AFFiNE(pronounced [ə‘fain]) is a next-gen knowledge base that brings planning, sorting and creating all together. Privacy first, open-source, customizable and ready to use.",
       "thai_description": "เครื่องมือจัดการฐานข้อมูลและ SQL workspace ที่มี AI assistant ช่วยเขียน SQL จากภาษาธรรมดา อธิบาย query และ optimize",
       "language": "TypeScript",
-      "stars": 76429,
-      "forks": 5603,
-      "stars_today": 574,
+      "stars": 77012,
+      "forks": 5646,
+      "stars_today": 542,
       "url": "https://github.com/toeverything/AFFiNE",
       "image": "https://cdn.affine.pro/Github_hero_image2.png",
       "readme_summary": {
@@ -302,9 +302,9 @@
       "description": "The only downloader you need. 下载器的集大成者。",
       "thai_description": "โปรเจกต์นี้คือ Swiftproxy provides 90M+ real residential IPs across 220+ locations worldwide, helping users access global content and manage location-specific network connections. With rotating and static residential proxies, flexible geo-targeting, and HTTP(S)/SOCKS5 support, Swiftproxy is ideal for cross-region downloads, network testing, and browser automation",
       "language": "Python",
-      "stars": 14635,
-      "forks": 885,
-      "stars_today": 779,
+      "stars": 15650,
+      "forks": 950,
+      "stars_today": 701,
       "url": "https://github.com/XiaoYouChR/Ghost-Downloader-3",
       "image": "https://raw.githubusercontent.com/XiaoYouChR/Ghost-Downloader-3/HEAD/.github/assets/banner.webp",
       "readme_summary": {
@@ -323,9 +323,9 @@
       "description": "AutoClip｜一个链接，一键出片。开源 AI 视频剪辑桌面工具，将播客、访谈、课程等长视频自动剪成短视频，生成字幕、封面和发布文案，适配抖音、小红书、TikTok、Reels 与 YouTube Shorts。Open-source AI video clipping & content repurposing.",
       "thai_description": "โปรเจกต์นี้คือ 适配抖音、小红书、TikTok、Reels、YouTube Shorts、B 站与 YouTube。 简体中文 · English · 日本語 · 한국어 · Español · Português · Русский · Français",
       "language": "Python",
-      "stars": 13012,
-      "forks": 2088,
-      "stars_today": 683,
+      "stars": 13848,
+      "forks": 2174,
+      "stars_today": 641,
       "url": "https://github.com/zhouxiaoka/autoclip",
       "image": "https://raw.githubusercontent.com/zhouxiaoka/autoclip/HEAD/docs/images/demos/gates-ezra-01.jpg",
       "readme_summary": {
